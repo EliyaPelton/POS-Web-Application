@@ -58,7 +58,8 @@ button:hover, button:active, button:focus {
 
 .nav_button:hover, .nav_button:active, .nav_button:focus {
     background: #FFFFFF;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
 }
 /* END BUTTON ---------- ---------- ---------- ---------- */
 
@@ -114,7 +115,7 @@ input {
     display: flex;
     flex-direction: row;
     justify-content:space-evenly;
-    width: 100%;
+    width: auto;
     height: auto;
     margin: 15px; /*center this item*/
     padding: 15px;
@@ -138,6 +139,8 @@ input {
 
 #sale_main_container {
     height: 100%;
+    margin: 2% 3% 10% 3%;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -147,7 +150,7 @@ input {
 
 .sale_section {
     height: auto;
-    margin: 5px;
+    margin: 0px;
 }
 
 /* Three Sections */
@@ -158,6 +161,7 @@ input {
     min-width: 340px;
     border: 2px solid red;
     background: #60c0e098;
+    margin: 0 10px;
 }
 
 #cart_section {
@@ -212,4 +216,40 @@ input {
     overflow: hidden;
 }
 
-/* END HOME PAGE ---------- ---------- ---------- ---------- */
+/* Item Display */
+
+/*
+.item_display_table {
+    background-color: white;
+}
+
+.item_display_cell {
+    background-color: white;
+}
+*/
+
+.item_display_cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#item_display_image_container {
+    height: 100%;
+    width: auto;
+    margin: 10px;
+    background-image: url("images/product_img_gold_bar.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/*
+#item_display_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}*/
+
+/* END SALE PAGE ---------- ---------- ---------- ---------- */
+
+/*<img src="images/product_img_gold_bar.png" alt="5 ounce gold bar">*/

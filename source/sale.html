@@ -15,7 +15,7 @@
 
         <div id="sale_main_container">
 
-            <!-- SEARCH INVENTORY -->
+            <!-- Section #1: SEARCH INVENTORY -->
             <div id="search_inventory_section" class="sale_section">
 
                 <!-- TODO: CSS.        Change style of search input field (line 25) -->
@@ -53,10 +53,37 @@
                     </div>
             </div>
 
-            <!-- ITEM DISPLAY -->
-            <div id="item_display_section" class="sale_section"></div>
+            <!-- Section #2: ITEM DISPLAY -->
+            <div id="item_display_section" class="sale_section">
+                <table class="item_display_table">
+                    <caption class="item_display_cell">Product Name</caption>
+                    <thead>
+                        <tr>
+                            <th class="item_display_cell">Qty</th>
+                            <th class="item_display_cell">Price</th>
+                            <th class="item_display_cell">Amount</th>
+                            <th class="item_display_cell">Add</th>
+                        </tr>
+                        <tr>
+                            <th class="item_display_cell">
+                                <input id="qty" class="item_display_input" placeholder="0"/>
+                            </th>
+                            <th class="item_display_cell">
+                                <input id="price" class="item_display_input" placeholder="$0.0"/>
+                            </th>
+                            <th class="item_display_cell">$##.##</th>
+                            <th class="item_display_cell">
+                                <button id="add_button" type="submit">+</button>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <div id="item_display_image_container">
+                    <!--<img id="item_display_image" src="images/product_img_gold_bar.png">-->
+                </div>
+            </div>
 
-            <!-- CART -->
+            <!-- Section #3: CART -->
             <div id="cart_section" class="sale_section"></div>
         </div>
 
