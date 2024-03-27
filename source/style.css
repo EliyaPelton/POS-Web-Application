@@ -1,3 +1,7 @@
+:root {
+    --saleOrPurchase_item_margin: 3%;
+}
+
 * {
     border: 1px solid orange;
     box-sizing: border-box;
@@ -27,11 +31,12 @@ header {
 
 
 /* BUTTON ---------- ---------- */
-button {
+.btn_generic, .collabsible_btn{
     background: #0B1678;
     width: 100%;
     padding: 15px;
     border: 0;
+    border-radius: 20px;
 
     font-family: "Roboto", sans-serif;
     color: #FFFFFF;
@@ -67,6 +72,7 @@ button:hover, button:active, button:focus {
 /* OTHER ---------- ---------- */
 input {
     border: 0;
+    border-radius: 15px;
     box-sizing: border-box;
     background: #f2f2f2;
     width: 100%;
@@ -135,11 +141,12 @@ input {
     display: flex;
     flex-direction: column;
     border: 3px solid white;
+    justify-content: end;
 }
 
 #sale_main_container {
     height: 100%;
-    margin: 2% 3% 10% 3%;
+    margin: 2% var(--saleOrPurchase_item_margin) 10% var(--saleOrPurchase_item_margin);
 
     display: flex;
     flex-direction: row;
@@ -154,33 +161,29 @@ input {
 }
 
 /* Three Sections */
-#item_display_section {
+.sale_section {
     display: flex;
     flex-direction: column;
-    width: 350px;
-    min-width: 340px;
     border: 2px solid red;
     background: #60c0e098;
+}
+
+#search_inventory_section {
+    width: 30%;
+    overflow-y: scroll;
+}
+
+#item_display_section {
+    width: 35%;
     margin: 0 10px;
 }
 
 #cart_section {
     width: 35%;
-    min-width: 200px;
-    border: 2px solid red;
-    background: #60c0e098;
+    overflow-y: scroll;
 }
 
-/* Inventory Search */
-#search_inventory_section {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    min-width: 130px;
-    border: 2px solid red;
-    background: #60c0e098;
-}
-
+/* Section #1: SEARCH INVENTORY */
 .--search_element {
     margin: 5px;
     width: auto;
@@ -213,17 +216,12 @@ input {
     background-color: #f1f1f1;
     padding: 0 18px;
     display: none;
-    overflow: hidden;
 }
 
-/* Item Display */
+/* Section #2: ITEM DISPLAY */
 
 /*
 .item_display_table {
-    background-color: white;
-}
-
-.item_display_cell {
     background-color: white;
 }
 */
@@ -231,6 +229,7 @@ input {
 .item_display_cell {
     text-align: center;
     vertical-align: middle;
+    /*background-color: white;*/
 }
 
 #item_display_image_container {
@@ -249,6 +248,20 @@ input {
     height: 100%;
     object-fit: cover;
 }*/
+
+
+/* Section #3: CART */
+#table_cart {
+}
+
+/* CONFIRM Cart Button */
+#btn_cart_confirm {
+    width: 200px;
+    position: fixed;
+    align-self: flex-end;
+    margin-right: var(--saleOrPurchase_item_margin);
+    margin-bottom: 4%;
+}
 
 /* END SALE PAGE ---------- ---------- ---------- ---------- */
 

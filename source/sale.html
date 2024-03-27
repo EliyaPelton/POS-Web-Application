@@ -66,14 +66,14 @@
                         </tr>
                         <tr>
                             <th class="item_display_cell">
-                                <input id="qty" class="item_display_input" placeholder="0"/>
+                                <input id="qty" class="item_display_input" placeholder="0" type="number"/>
                             </th>
                             <th class="item_display_cell">
-                                <input id="price" class="item_display_input" placeholder="$0.0"/>
+                                <input id="price" class="item_display_input" placeholder="$0.0" type="number"/>
                             </th>
                             <th class="item_display_cell">$##.##</th>
                             <th class="item_display_cell">
-                                <button id="add_button" type="submit">+</button>
+                                <button id="btn_add_to_cart" class="btn_generic" type="button">+</button>
                             </th>
                         </tr>
                     </thead>
@@ -84,8 +84,45 @@
             </div>
 
             <!-- Section #3: CART -->
-            <div id="cart_section" class="sale_section"></div>
+            <div id="cart_section" class="sale_section">
+                <table id="table_cart">
+                    <caption class="cart_cell">Cart</caption>
+                    <thead>
+                        <tr>
+                            <th class="cart_cell">Product Name</th>
+                            <th class="cart_cell">Qty</th>
+                            <th class="cart_cell">Amount</th>
+                            <th class="cart_cell"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart_container">
+                        <!--<tr>
+                            <td class="cart_cell">Product Name</td>
+                            <td class="cart_cell">#</td>
+                            <td class="cart_cell">$##.##</td>
+                            <td class="cart_cell">
+                                <button type="button"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>-->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="cart_cell">Total</th>
+                            <td></td>
+                            <td id="cart_total_amount" class="cart_cell"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <dialog>
+                    <div>Hello</div>
+                </dialog>
+            </div>
+
+            
         </div>
+
+        <!-- CONFIRM BUTTON -->
+        <button id="btn_cart_confirm" class="btn_generic" type="submit">Confirm</button>
 
     </div>
 
