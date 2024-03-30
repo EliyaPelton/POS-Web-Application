@@ -3,23 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sale Page</title>
+    <title id="title">Sale Page</title>
     <link type="text/css" rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+<!-- "initializeInventory()" creates an object for each inventory item and populate it with the following data: -->
+<!-- SKU (unique item ID), Description, Price, Image -->
+
     <div id="sale_bkg" class="bkg">
 
-        <header>Header</header>
+        <!-- HEADER BEGIN -->
+        <header>
+            <div id="header_bkg">
+                <div id="header_logo" class="header_item" onclick='window.location.href = "./home.html"'></div>
+                <div id="header_title" class="header_item"></div>
+                <div id="header_icon" class="header_item" onclick='window.location.href = "./index.html"'>User Name <i class='fa fa-user'></i></div>
+            </div>
+        </header>
+        <!-- HEADER BEGIN -->
 
-        <div class="nav_btn_container">
-            <button type="button" class="nav_button" onclick='window.location.href = "./index.html"'>Login</button>
-            <button type="button" class="nav_button" onclick='window.location.href = "./sale.html"'>Sale</button>
-            <button type="button" class="nav_button" onclick='window.location.href = "./purchase.html"'>Purchase</button>
-            <button type="button" class="nav_button" onclick='window.location.href = "./customer.html"'>Customer</button>
+        <div id="sale_main_container">
+
+            <!-- Section #1: SEARCH INVENTORY -->
+            <div id="search_inventory_section" class="sale_section">
+
+                <!-- TODO: CSS.        Change style of search input field (line 25) -->
+                <!-- TODO: HTML/CSS.   Add "magnifying glass" icon to right of search bar (line 25) -->
+                <!-- TODO  JS.         Add function to search inventory based on keyword (line 25) -->
+                <input id="search_inventory_input" class="--search_element" placeholder="Search Item"/>
+
+                <!-- TODO: CSS.        Change style of class="collapsible" dropdowns -->
+                <!-- TODO: CSS.        Change style of class="collapsible_btn" selections -->
+                <!-- TODO: HTML/CSS.   Add "dropdown" icon to right of dropdowns -->
+                <!-- TODO  JS.         Add function so that class="item_btn collabsible_btn" will cause the item to display in the div="item_display_section" -->
+                <button id="gold_coins" class="category collapsible --search_element" type="button">GOLD COINS</button>
+                    <div class="content">
+                        <button id="1oz_ge" class="item_btn collabsible_btn"></button>
+                        <button id="1oz_gml" class="item_btn collabsible_btn"></button>
+                        <button id="1oz_gkr" class="item_btn collabsible_btn"></button>
+                    </div>
+                <button id="gold_bars" class="category collapsible --search_element" type="button">GOLD BARS</button>
+                    <div class="content">
+                        <button id="1oz_gb" class="item_btn collabsible_btn"></button>
+                        <button id="1/2oz_gb" class="item_btn collabsible_btn"></button>
+                        <button id="1g_gb" class="item_btn collabsible_btn"></button>
+                    </div>
+                <button id="silver_coins" class="category collapsible --search_element" type="button">SILVER COINS</button>
+                    <div class="content">
+                        <button id="1oz_se" class="item_btn collabsible_btn"></button>
+                        <button id="1oz_sml" class="item_btn collabsible_btn"></button>
+                        <button id="1oz_skr" class="item_btn collabsible_btn"></button>
+                    </div>
+                <button id="gold_bars" class="category collapsible --search_element" type="button">SILVER BARS</button>
+                    <div class="content">
+                        <button id="1oz_sb" class="item_btn collabsible_btn"></button>
+                        <button id="1/2oz_sb" class="item_btn collabsible_btn"></button>
+                        <button id="1g_sb" class="item_btn collabsible_btn"></button>
+                    </div>
+            </div>
+
+            <!-- Section #2: ITEM DISPLAY -->
+            <div id="item_display_section" class="sale_section">
+                <table class="item_display_table">
+                    <caption id="item_display_product_name" class="item_display_cell"></caption>
+                    <thead>
+                        <tr>
+                            <th class="item_display_cell">Qty</th>
+                            <th class="item_display_cell">Price</th>
+                            <th class="item_display_cell">Amount</th>
+                            <th class="item_display_cell">Add</th>
+                        </tr>
+                        <tr>
+                            <th class="item_display_cell">
+                                <input id="qty" class="item_display_input" placeholder="0" type="number" onchange="updateItemDisplayAmount()"/>
+                            </th>
+                            <th class="item_display_cell">
+                                <input id="price" class="item_display_input" placeholder="$0.0" type="number" onchange="updateItemDisplayAmount()"/>
+                            </th>
+                            <th id="item_display_amount" class="item_display_cell"></th>
+                            <th class="item_display_cell">
+                                <button id="btn_add_to_cart" class="btn_generic" type="button">+</button>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <div id="item_display_image_container">
+                    <!--<img id="item_display_image" src="images/product_img_gold_bar.png">-->
+                </div>
+            </div>
+
+            <!-- Section #3: CART -->
+            <div id="cart_section" class="sale_section">
+                <table id="table_cart">
+                    <caption class="cart_cell">Cart</caption>
+                    <thead>
+                        <tr>
+                            <th class="cart_cell">Product Name</th>
+                            <th class="cart_cell">Qty</th>
+                            <th class="cart_cell">Amount</th>
+                            <th class="cart_cell"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart_container">
+                        <!--<tr>
+                            <td class="cart_cell">Product Name</td>
+                            <td class="cart_cell">#</td>
+                            <td class="cart_cell">$##.##</td>
+                            <td class="cart_cell">
+                                <button type="button"><i class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>-->
+                    </tbody>
+                    <span></span>
+                    <tfoot>
+                        <tr>
+                            <th class="cart_cell">Total</th>
+                            <td></td>
+                            <td id="cart_total_amount" class="cart_cell"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <dialog>
+                    <div>Hello</div>
+                </dialog>
+            </div>
+
+            
         </div>
 
+        <!-- CONFIRM BUTTON -->
+        <button id="btn_cart_confirm" class="btn_generic" type="submit">Confirm</button>
+
     </div>
+
+<!-- SCRIPTS -->
+    <script src="./script.js"></script>
+    <script src="./initializeInventory.js"></script>
+
 </body>
 
 </html>
+
+<!--Icon buttons:
+<button class="btn"><i class="fa fa-home"></i></button>
+<button class="btn"><i class="fa fa-bars"></i></button>
+<button class="btn"><i class="fa fa-trash"></i></button>
+<button class="btn"><i class="fa fa-close"></i></button>
+<button class="btn"><i class="fa fa-folder"></i></button>
+<button class="btn"><i class="fas fa-user-alt"></i></button>
+<button class="btn"><i class="fa fa-user-add"></i></button>
+-->

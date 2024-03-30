@@ -3,16 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POS Web Application System</title>
+    <title>Customer Page</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-    <nav>
-        <a href="./index.html">Login</a>
-        <a href="./home.html">Home</a>
-        <a href="./sale.html">Sale</a>
-        <a href="./purchase.html">Purchase</a>
-        <a href="./customer.html">Customer</a>
-    </nav>
-    Customer Page
+    <div id="customer_bkg" class="bkg">
+
+        <!-- HEADER BEGIN -->
+        <header>
+            <div id="header_bkg">
+                <div id="header_logo" class="header_item" onclick='window.location.href = "./home.html"'></div>
+                <div id="header_title" class="header_item"></div>
+                <div id="header_icon" class="header_item" onclick='window.location.href = "./index.html"'>User Name <i class='fa fa-user'></i></div>
+            </div>
+        </header>
+        <!-- HEADER BEGIN -->
+
+        <div class="customer_btn_container">
+            <div class="input_group">
+                <input id="search_customer_input" type="text" placeholder="Search Customer" class="form_control"/>
+                <!--<ul class="nav nav_pills nav_stacked x42swiz" style="background-color: whitsmoke; position: absolute; top: 32px; left: 15px; width: 500px; z-index: 9999999; border: 2px solid lightgray; border-radius: 5px; height: 400px; overflow: auto; display: block;" id="searchwizResults12978">
+                    <li role="presentation">
+                        <a href="#" class="contactsWizardClose">
+                            <span style="margin-left:95%"></span>
+                            <i class="fa fa-close"></i>
+                        </a>
+                    </li>
+                </ul>-->
+            </div>
+            <button id="btn_add_new_customer" class="btn_generic" type="button"><i class="fa fa-user-plus" style="font-size: 20px;"></i> Add New Customer</button>
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="./script.js"></script>
+
 </body>
+
 </html>
