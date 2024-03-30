@@ -74,7 +74,7 @@ const Obj_1ozsml = {
 sku: "1oz_sml",
 desc: "1oz Silver Maple Leaf",
 price: 28,
-img: "images/img_1oz_sml.jpeg",
+img: "images/img_1oz_sml.jpg",
 };
 
 const Obj_1ozskr = {
