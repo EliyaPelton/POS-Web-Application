@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="title">Sale Page</title>
+    <title id="title">Purchase Page</title>
     <link type="text/css" rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-<!-- "initializeInventory()" creates an object for each inventory item and populate it with the following data: -->
-<!-- SKU (unique item ID), Description, Price, Image -->
+<script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
 
     <div id="sale_bkg" class="bkg">
 
@@ -140,7 +139,10 @@
 
 <!-- SCRIPTS -->
     <script src="./script.js"></script>
+    <script src="./scriptSalesPurchases.js"></script>
     <script src="./initializeInventory.js"></script>
+    <!-- library for pdf generation -->
+    
 
 </body>
 

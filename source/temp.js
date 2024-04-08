@@ -1,4 +1,149 @@
-    $('#completeCartTable > tbody').empty();
+window.addEventListener("DOMContentLoaded", () => {
+    // (A) FILE PICKER
+    const picker = document.getElementById("demo");
+  
+    // (B) READ SELECTED CSV FILE
+    picker.onchange = () => {
+      let reader = new FileReader();
+      reader.addEventListener("loadend", () => {
+        // (B1) PARSE INTO ARRAY
+        let data = CSV.parse(reader.result);
+  
+        // (B2) ADD NEW ROWS
+        data.push(["A", "B"]); // APPEND
+        data.unshift(["C", "D"]); // PREPEND
+        data.splice(4, 0, ["E", "F"]); // INSERT
+  
+        // (B3) INSERT BEFORE "JOE DOE"
+        let at = 0;
+        for (let [i,r] of Object.entries(data)) {
+          if (r.includes("Joe Doe")) { at =i; break; }
+        }
+        data.splice(at, 0, ["G", "H"]);
+  
+        // (B4) "CLEAN" CSV DATA
+        // credit : https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+        data = data.map(row => row
+          .map(String) // convert to string
+          .map(v => v.replaceAll('"', '""')) // escape double quotes
+          .map(v => `"${v}"`) // quote
+          .join(",") // comma-separated
+        ).join("\r\n"); // new line
+  
+        // (B5) FORCE DOWNLOAD
+        var blob = new Blob([data], { type: "text/csv;charset=utf-8;" }),
+            url = URL.createObjectURL(blob),
+            a = document.createElement("a");
+        a.href = url;
+        a.setAttribute("download", "updated.csv");
+        a.click();
+        URL.revokeObjectURL(url);
+        a.remove();
+        picker.value = "";
+      });
+      reader.readAsText(picker.files[0]);
+    };
+  });
+
+
+/*
+function exportToExcel() {
+    // Get the form data
+    var formData = document.forms["myForm"].elements;
+    var csvData = [];
+
+    // Get the field names
+    var fieldNames = [];
+    for (var i = 0; i < formData.length; i++) {
+      fieldNames.push(formData[i].name);
+    }
+    
+    // Add the field names to the CSV data
+    csvData.push('"' + fieldNames.join('","') + '"');
+  
+    // Loop through the form fields and build the CSV data
+    var row = [];
+    for (var i = 0; i < formData.length; i++) {
+      var fieldValue = formData[i].value;
+      fieldValue = fieldValue.replace(/"/g, '""');
+      row.push('"' + fieldValue + '"');
+    }
+    
+    // Add the row to the CSV data
+    csvData.push(row.join(","));
+  
+    // Convert the CSV data to a string and encode it for download
+    var csvString = csvData.join("\n");
+    var encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvString);
+  
+    // Create a temporary link element and click it to trigger the download
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "form-data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+
+
+function exportToExcel() {
+    // Get the form data
+    var formData = document.forms["myForm"].elements;
+    var csvData = [];
+
+    // Get the field names
+    var fieldNames = [];
+    for (var i = 0; i < formData.length; i++) {
+      fieldNames.push(formData[i].name);
+    }
+    
+    // Add the field names to the CSV data
+    csvData.push('"' + fieldNames.join('","') + '"');
+  
+    // Loop through the form fields and build the CSV data
+    var row = [];
+    for (var i = 0; i < formData.length; i++) {
+      var fieldValue = formData[i].value;
+      fieldValue = fieldValue.replace(/"/g, '""');
+      row.push('"' + fieldValue + '"');
+    }
+    
+    // Add the row to the CSV data
+    csvData.push(row.join(","));
+  
+    // Convert the CSV data to a string and encode it for download
+    var csvString = csvData.join("\n");
+    var encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvString);
+  
+    // Create a temporary link element and click it to trigger the download
+    var link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "form-data.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+*/
+
+
+/*function exportF() {
+    //Format your table with form data
+
+    var html = document.getElementById("text1").value + document.getElementById("text2").value;
+  
+    var url = 'data:application/vnd.ms-excel,' + escape(html); // Set your html table into url 
+    var link = document.getElementById("downloadLink");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "export.xml"); // Choose the file name
+    link.click(); // Download your excel file   
+    return false;
+  }*/
+  
+
+
+/*
+$('#completeCartTable > tbody').empty();
     $('#completeCartTable > tfoot').empty();
     var rows = $('#cartItems').find('tbody > tr');
     $('#cartItems').find('tbody > tr').each(function () {
@@ -123,6 +268,7 @@
             hideSpinner();
             return false;
         }
+        */
 
         //All of this is for adding item to the inventory
 /*
