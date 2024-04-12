@@ -1,11 +1,6 @@
-/* ****************************************************** */
-/* *************** PAGE: SALES/PURCHASES **************** */
-/* ****************************************************** */
-
 /* ********************************** */
 /* ******* Section #1: SEARCH ******* */
 /* ********************************** */
-
 //DROPDOWN FEATURE of "search_inventory_section" section of Sale & Purchase Pages
 var coll = document.getElementsByClassName("collapsible");
 var i;
@@ -67,8 +62,6 @@ let cartData = [];
 let currentLineItem = {};
 //currentLineItem object: id (unique line item id), sku (item id), desc, qty, price
 
-
-//FUNCTION
 function addToCart() {
   //Searching for currentLineItem.id will allow us to add an "edit" feature in the future.
   //The item being edited will be the set to the currentLineItem.
@@ -89,11 +82,11 @@ function addToCart() {
   }
 
   localStorage.setItem("data", JSON.stringify(cartData));
-  updateCartHTML()
+  updateCartHTML();
+  updatePDF();
   currentLintItem = {}; //Only necessary when we add the "edit" feature
 };
 
-//FUNCTION
 function updateCartHTML() {
   cartContainer.innerHTML = "";
   cartTotal = 0;
@@ -106,7 +99,7 @@ function updateCartHTML() {
         <td class="cart_cell">${qty}</td>
         <td class="cart_cell">$${amount}</td>
         <td class="cart_cell">
-            <button onclick="deleteItem(this)" type="button"><i class="fa fa-trash"></i></button>
+            <button class="delete_btn" onclick="deleteItem(this)" type="button"><i class="fa fa-trash"></i></button>
         </td>
       </tr>
       `)
@@ -117,19 +110,16 @@ function updateCartHTML() {
   cartTotalDisplay.innerText = `$${cartTotal}`;
 };
 
-//FUNCTION
 function calculateTotal() {
   cartTotal = 0;
   cartData.forEach(({amount}) => {cartTotal += amount;});
   cartTotalDisplay.innerText = `$${cartTotal}`;
 }
 
-//UPDATE ITEM AMOUNT FEATURE of "item_display_section" of Sale & Purchase Pages
 function updateItemDisplayAmount() {
   itemDisplayAmount.innerText = "$" + inputQty.value*inputPrice.value;
 }
 
-//FUNCTION
 const deleteItem = (buttonEl) => {
   const itemArrIndex = cartData.findIndex((item) => item.id === buttonEl.parentElement.id);
 
@@ -140,7 +130,6 @@ const deleteItem = (buttonEl) => {
   calculateTotal();
 };
 
-//FUNCTION
 function resetAll() {
   cartContainer.innerHTML = '';
   cartData = [];
@@ -148,204 +137,97 @@ function resetAll() {
 };
 
 
-//TODO: Add an invoice generation function
 
-//EVENT LISTENERS
-//TODO: Change "btnCartConfirm" action to invoice generation function
-addToCartBtn.addEventListener("click", addToCart);
-btnCartConfirm.addEventListener("click", confirm);
+/* ********************************** */
+/* ******** Section #3: CART ******** */
+/* ********************************** */ 
+const invoiceCellContainer = document.getElementById("invoice_cell_container");
+const invoiceTotalDisplay = document.getElementById("invoice_total_amount");
+const invoiceHeader = document.getElementById("invoice_header");
 
+function confirm() {
+  printPDF();
+  resetAll();
+}
 
+function printPDF() {
+  showPDF();
+  generatePDF();
+  myTimeout = setTimeout(hidePDF, 1);
+}
 
+function showPDF() {
+  const containerContent = document.querySelector(".pdf_container");
+  containerContent.classList.remove("hidden_pdf");
+}
 
+function hidePDF() {
+  const containerContent = document.querySelector(".pdf_container");
+  containerContent.classList.add("hidden_pdf");
+}
 
+function invoiceDate() {
+  const currentDate = new Date();
+  const dateStr = `${currentDate.getMonth()+1}/${currentDate.getDate()}/${currentDate.getFullYear()}`;
+  const timeStr = `${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
+  const invoiceIdStr = Date.now();
+  invoiceHeader.innerHTML = `
+  Invoice #${invoiceIdStr}<br />
+  Created: ${dateStr} ${timeStr}<br />`;
+  return invoiceIdStr;
+}
 
-/*console.log(cartData);
-  windowObject = window.open();
+function generatePDF() 
+  {
+    //Credit: Code With Mark
+    //Author URL: http://codewithmark.com
+    //Github : https://ekoopmans.github.io/html2pdf.js
 
+    const invoiceIdStr = invoiceDate();
+    console.log("testing");
+    console.log(invoiceIdStr);
+    var element = document.getElementById('pdf_container');
+    html2pdf().set({filename: `I-${invoiceIdStr}.pdf`}).from(element).save();
+
+    //custom settings
+    var opt = 
+    {
+      margin:       1,
+      filename:     `I-${invoiceIdStr}.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    // New Promise-based usage:
+    //html2pdf().set(opt).from(element).save();
+  };
+
+function updatePDF() {
+  invoiceCellContainer.innerHTML = "";
+  cartTotal = 0;
 
   cartData.forEach(
     ({ id, sku, desc, qty, price, amount }) => {
-      (cartContainer.outerHTML += `
-      <tr>
-        <td class="cart_cell">${desc}</td>
-        <td class="cart_cell">${qty}</td>
-        <td class="cart_cell">$${amount}</td>
-        <td class="cart_cell">
-            <button onclick="deleteItem(this)" type="button"><i class="fa fa-trash"></i></button>
-        </td>
+      (invoiceCellContainer.innerHTML += `
+
+      <tr class="item">
+        <td>${desc}</td>
+        <td>${qty}</td>
+        <td>$${price}</td>
+        <td>$${amount}</td>
       </tr>
       `)
-      window.document.write(cartContainer);
+      cartTotal += amount;
     }
   );
 
-  windowObject.print();
-  windowObject.close();*/
-
-
-//TODO: Add search function
-//https://dev.to/am20dipi/how-to-build-a-simple-search-bar-in-javascript-4onf
-//https://www.w3schools.com/howto/howto_js_search_menu.asp
-/*SEARCH FUNCTION
-const searchInventoryInput = document.getElementById("search_inventory_input");
-
-searchInventoryInput.addEventListener("input", (e) => {
-  let value = e.target.value;
-  if (value && value.trim().length > 0){
-    value = value.trim().toLowerCase();
-  } else {}
-});
-
-function setList(results) {
-  for (const item of results) {
-    const resultItem = document.createElement('li');
-    resultItem.classList.add('results_item');
-    const text = document.createTextNode(item.desc);
-    resultItem.appendChild(text);
-    list.appendChild(resultItem);
-  }
+  invoiceTotalDisplay.innerHTML = `Total: $${cartTotal}`;
 };
 
-searchInventoryInput.addEventListener("input", (e) => {
-  let value = e.target.value;
-
-  if (value && value.trim().length > 0) {
-    value = value.trim().toLowerCase()
-
-    setList(inventoryData.filter(item => {
-      return item.desc.includes(value)
-    }));
-  };
-});
-
-function clearList() {
-  while (list.firstChild) {
-    list.removeChild(list.firstChild);
-  };
-};*/
-
-var currentdate = new Date();
 
 
-//Template credit: https://github.com/edisonneza/jspdf-invoice-template
-function confirm() {
-  
-  var pdfObject = jsPDFInvoiceTemplate.default(props);
 
-  console.log("Object created: ", pdfObject);
-  console.log(cartData.length);
-};
-
-var props = {
-  outputType: jsPDFInvoiceTemplate.OutputType.Save,
-  returnJsPDFDocObject: true,
-  fileName: "Invoice",
-  orientationLandscape: false,
-  compress: true,
-  logo: {
-      src: "images/img_logo.png",
-      type: 'PNG', //optional, when src= data:uri (nodejs case)
-      width: 53.33, //aspect ratio = width/height
-      height: 26.66,
-      margin: {
-          top: 0, //negative or positive num, from the current position
-          left: 0 //negative or positive num, from the current position
-      }
-  },
-  stamp: {
-      inAllPages: true, //by default = false, just in the last page
-      src: "https://raw.githubusercontent.com/edisonneza/jspdf-invoice-template/demo/images/qr_code.jpg",
-      type: 'JPG', //optional, when src= data:uri (nodejs case)
-      width: 20, //aspect ratio = width/height
-      height: 20,
-      margin: {
-          top: 0, //negative or positive num, from the current position
-          left: 0 //negative or positive num, from the current position
-      }
-  },
-  business: {
-      name: "Gold and Silver Exchange",
-      address: "2000 Washington Lane",
-      phone: "(757) 777-777",
-      email: "info@GoldAndSilverExchange.com",
-  },
-
-  invoice: {
-      label: "Invoice #: ",
-      num: 1,
-      invGenDate: "Date: " + (currentdate.getMonth()+1) + "/"
-                    + currentdate.getDate() + "/"
-                    + currentdate.getFullYear() + " "
-                    + currentdate.getHours() + ":"
-                    + currentdate.getMinutes() + ":"
-                    + currentdate.getSeconds(),
-      headerBorder: false,
-      tableBodyBorder: false,
-      header: [
-        {
-          title: "#", 
-          style: { 
-            width: 10 
-          } 
-        }, 
-        { 
-          title: "Title",
-          style: {
-            width: 30
-          } 
-        }, 
-        { 
-          title: "Description",
-          style: {
-            width: 80
-          } 
-        }, 
-        { title: "Price"},
-        { title: "Quantity"},
-        { title: "Unit"},
-        { title: "Total"}
-      ],
-
-      table: Array.from(Array(10), (item, index)=>([
-        index + 1,
-        "There are many variations ",
-        "Description",
-        200.5,
-        4.5,
-        "m2",
-        400.5
-    ])),
-      additionalRows: [{
-          col1: 'Total:',
-          col2: '145,250.50',
-          col3: 'ALL',
-          style: {
-              fontSize: 14 //optional, default 12
-          }
-      },
-      {
-          col1: 'VAT:',
-          col2: '20',
-          col3: '%',
-          style: {
-              fontSize: 10 //optional, default 12
-          }
-      },
-      {
-          col1: 'SubTotal:',
-          col2: '116,199.90',
-          col3: 'ALL',
-          style: {
-              fontSize: 10 //optional, default 12
-          }
-      }],
-      invDescLabel: "Thank you for your business!",
-      invDesc: "Description",
-  },
-  footer: {
-      text: "The invoice is created on a computer and is valid without the signature and stamp.",
-  },
-  pageEnable: true,
-  pageLabel: "Page ",
-};
+//EVENT LISTENERS
+addToCartBtn.addEventListener("click", addToCart);
+btnCartConfirm.addEventListener("click", confirm);

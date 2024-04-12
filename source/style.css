@@ -71,7 +71,7 @@ header {
 
 /* REUSEABLE COMPONENTS */
 .btn_generic, .collabsible_btn{
-    background: #0B1678;
+    background: #050b45;
     width: 100%;
     padding: 15px;
     border: 0;
@@ -97,7 +97,7 @@ header {
     padding: 15px;
 
     font-family: "Roboto", sans-serif;
-    color: #045acb;
+    color: #094ea7;
     font-size: 16px;
     font-weight: bolder;
 }
@@ -131,11 +131,11 @@ input, select {
 
  /* LOGIN PAGE ---------- ---------- */
  #login_bkg {
-    background-image: url('images/img_login_bkgd3.png');
+    background-image: url('images/img_login_bkgd4.webp');
     background-position: center center;
-    /*background-attachment: fixed;
+    background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover;*/
+    background-size: cover;
     align-items: center;
     justify-content: center;
 }
@@ -143,7 +143,8 @@ input, select {
  .login_container {
     max-width: 500px;
     padding: 45px;
-    background: rgba(0, 0, 0, 0.6);
+    padding-top: 30px;
+    background: rgba(0, 0, 0, 0.792);
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -151,6 +152,17 @@ input, select {
 
 .login_element {
     margin: 5px;
+}
+
+#login_logo {
+    background-image: url('images/img_logo.png');
+    height: 60px;
+    width: 120px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: auto;
+    margin-bottom: 10px;
 }
 /* END LOGIN ---------- ---------- ---------- ---------- */
 
@@ -278,10 +290,12 @@ input, select {
 }
 
 /* Section #3: CART */
-caption {
+#table_caption {
+    border-top: 2px solid lightgray;
     font-weight: bold;
     font-size: 18px;
-    margin: 5px;
+    padding: 4px;
+    text-align: center;
 }
 
 table {
@@ -291,6 +305,7 @@ table {
 tr {
     border-top: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
+    text-align: center;
 }
 
 th, td {
@@ -302,8 +317,19 @@ th, td {
     font-weight: bold;
 }
 
+.delete_btn {
+    border: none;
+    background-color: transparent;
+}
+
+.delete_btn:hover {
+    border: none;
+    background-color: transparent;
+    color: var(--hover-gray);
+}
+
 /* CONFIRM Cart Button */
-#btn_cart_confirm {
+#rep {
     width: 200px;
     position: fixed;
     align-self: flex-end;
@@ -450,3 +476,103 @@ th, td {
 }
 
 /* END CUSTOMER PAGE ---------- ---------- ---------- ---------- */
+
+/* PDF GENERATION */
+.invoice-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+}
+
+.invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+}
+
+.invoice-box table td {
+    padding: 5px;
+    vertical-align: top;
+}
+
+.invoice-box table tr td:nth-child(4) {
+    text-align: right;
+}
+
+.invoice-box table tr.top table td {
+    padding-bottom: 20px;
+}
+
+.invoice-box table tr.top table td.title {
+    font-size: 45px;
+    line-height: 45px;
+    color: #333;
+}
+
+.invoice-box table tr.information table td {
+    padding-bottom: 40px;
+}
+
+.invoice-box table tr.heading td {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.invoice-box table tr.details td {
+    padding-bottom: 20px;
+}
+
+.invoice-box table tr.item td {
+    border-bottom: 1px solid #eee;
+}
+
+.invoice-box table tr.item.last td {
+    border-bottom: none;
+}
+
+.invoice-box table tr.total td:nth-child(5) {
+    border-top: 2px solid #eee;
+}
+
+.invoice-box table tr.total td:nth-child(4) {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+    .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+
+/** RTL **/
+.invoice-box.rtl {
+    direction: rtl;
+    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
+
+.invoice-box.rtl table {
+    text-align: right;
+}
+
+.invoice-box.rtl table tr td:nth-child(4) {
+    text-align: left;
+}
+
+.hidden_pdf {
+    display: none;
+}

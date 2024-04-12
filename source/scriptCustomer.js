@@ -69,7 +69,7 @@ function exportToExcel() {
     document.body.removeChild(link);
   }
 
-/*
+  /*
 function exportF() {
     //Format your table with form data
     document.getElementById("input").innerHTML = document.getElementById("text").value;

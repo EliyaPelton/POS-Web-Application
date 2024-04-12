@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">Sale Page</title>
+
     <link type="text/css" rel="stylesheet" href="style.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script> 
+
+	<script src="af.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js" ></script>
+    
 </head>
 
 <body>
-<script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+    
+    
 
     <div id="sale_bkg" class="bkg">
 
@@ -28,15 +40,10 @@
             <!-- Section #1: SEARCH INVENTORY -->
             <div id="search_inventory_section" class="sale_section">
 
-                <!-- TODO: CSS.        Change style of search input field (line 25) -->
                 <!-- TODO: HTML/CSS.   Add "magnifying glass" icon to right of search bar (line 25) -->
                 <!-- TODO  JS.         Add function to search inventory based on keyword (line 25) -->
                 <input id="search_inventory_input" class="--search_element" placeholder="Search Item"/>
 
-                <!-- TODO: CSS.        Change style of class="collapsible" dropdowns -->
-                <!-- TODO: CSS.        Change style of class="collapsible_btn" selections -->
-                <!-- TODO: HTML/CSS.   Add "dropdown" icon to right of dropdowns -->
-                <!-- TODO  JS.         Add function so that class="item_btn collabsible_btn" will cause the item to display in the div="item_display_section" -->
                 <button id="gold_coins" class="category collapsible --search_element" type="button">GOLD COINS</button>
                     <div class="content">
                         <button id="1oz_ge" class="item_btn collabsible_btn"></button>
@@ -89,14 +96,14 @@
                     </thead>
                 </table>
                 <div id="item_display_image_container">
-                    <!--<img id="item_display_image" src="images/product_img_gold_bar.png">-->
+                    <!-- To be filled in dynamically when user selects an item -->
                 </div>
             </div>
 
             <!-- Section #3: CART -->
             <div id="cart_section" class="sale_section">
                 <table id="table_cart">
-                    <caption class="cart_cell">Cart</caption>
+                    <div id="table_caption" class="cart_cell">Cart</div>
                     <thead>
                         <tr>
                             <th class="cart_cell">Product Name</th>
@@ -106,14 +113,7 @@
                         </tr>
                     </thead>
                     <tbody id="cart_container">
-                        <!--<tr>
-                            <td class="cart_cell">Product Name</td>
-                            <td class="cart_cell">#</td>
-                            <td class="cart_cell">$##.##</td>
-                            <td class="cart_cell">
-                                <button type="button"><i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>-->
+                        <!-- Cells filled in with user input by JavaScript-->
                     </tbody>
                     <span></span>
                     <tfoot>
@@ -124,25 +124,82 @@
                         </tr>
                     </tfoot>
                 </table>
-                <dialog>
-                    <div>Hello</div>
-                </dialog>
             </div>
-
-            
         </div>
 
         <!-- CONFIRM BUTTON -->
-        <button id="btn_cart_confirm" class="btn_generic" type="submit">Confirm</button>
+        <input type="button" id="rep" value="Confirm" class="btn_generic btn_print" onclick="confirm()">
+
+        <div class="pdf_container hidden_pdf" id="pdf_container" >
+		
+
+            <div class="invoice-box">
+    
+        
+    
+                <table cellpadding="0" cellspacing="0" >
+                    <tr class="top">
+                        <td colspan="4">
+                            <table>
+                                <tr>
+                                    <td class="title">
+                                        <img src="images/img_logo.png" style="width: 100%; max-width: 300px" />
+                                    </td>
+    
+                                    <td id="invoice_header">
+                                        Invoice #123<br />
+                                        Created: <br />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+    
+                    <tr class="information">
+                        <td colspan="4">
+                            <table>
+                                <tr>
+                                    <td>
+                                        12345 Sunny Road<br />
+                                        Sunnyville, CA 12345
+                                    </td>
+    
+                                    <td>
+                                        <strong><span style="font-size:20px;">Gold and Silver Exchange, LLC</span></strong>
+                                        info@GoldAndSilverExchange.com
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+    
+                    <tr class="heading">
+                        <td>Item</td>
+                        <td>Qty</td>
+                        <td>Amount</td>
+                        <td>Price</td>
+                    </tr>
+
+                    <tbody id="invoice_cell_container">
+                        <!-- Cells filled in with user input by JavaScript -->
+                    </tbody>
+
+                    <tr class="total">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="invoice_total_amount"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
     </div>
 
 <!-- SCRIPTS -->
     <script src="./script.js"></script>
     <script src="./scriptSalesPurchases.js"></script>
-    <script src="./initializeInventory.js"></script>
-    <!-- library for pdf generation -->
-    
+    <script src="./initializeInventory.js"></script>   
 
 </body>
 
@@ -156,4 +213,5 @@
 <button class="btn"><i class="fa fa-folder"></i></button>
 <button class="btn"><i class="fas fa-user-alt"></i></button>
 <button class="btn"><i class="fa fa-user-add"></i></button>
+<button id="btn_cart_confirm" class="btn_generic" type="submit">Confirm</button>
 -->
