@@ -18,7 +18,6 @@ const _1_2ozsb = document.getElementById('1/2oz_sb');
 const _1gsb = document.getElementById('1g_sb');
 
 //add info to each inventory item
-//TODO: finish filling out the info for all the items
 const Obj_1ozge = {
     sku: "1oz_ge",
     desc: "1oz Gold Eagle",
@@ -107,12 +106,10 @@ const Obj_1gsb = {
 };
 
 //Add item to inventory array
-//TODO: add all the objects once the info is filled out
 const inventoryData = [Obj_1ozge, Obj_1ozgml, Obj_1ozgkr, Obj_1ozgb, Obj_1_2ozgb, Obj_1ggb, Obj_1ozse, Obj_1ozsml, Obj_1ozskr, Obj_1ozsb, Obj_1_2ozsb, Obj_1gsb];
 
 
-//Use the desc to display on the screen, rather than the HTML
-//TODO: finish this for all the items
+//Use the desc to display on the screen
 _1ozge.innerHTML = Obj_1ozge.desc;
 _1ozgml.innerHTML = Obj_1ozgml.desc;
 _1ozgkr.innerHTML = Obj_1ozgkr.desc;

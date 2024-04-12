@@ -96,7 +96,8 @@
                     </thead>
                 </table>
                 <div id="item_display_image_container">
-                    <!-- To be filled in dynamically when user selects an item -->
+                    <!-- To be filled in dynamically when user selects an item.
+                        Image URL set in style.css with a variable which is defined by a script in scriptSalesPurchases.js -->
                 </div>
             </div>
 
@@ -113,7 +114,7 @@
                         </tr>
                     </thead>
                     <tbody id="cart_container">
-                        <!-- Cells filled in with user input by JavaScript-->
+                        <!-- Cells filled in with user input by scriptSalesPurchases.js -->
                     </tbody>
                     <span></span>
                     <tfoot>
@@ -130,12 +131,11 @@
         <!-- CONFIRM BUTTON -->
         <input type="button" id="rep" value="Confirm" class="btn_generic btn_print" onclick="confirm()">
 
-        <div class="pdf_container hidden_pdf" id="pdf_container" >
-		
+        <!-- INVOICE PDF GENERATION -->
+        <!-- This div is hidden from the user and only used to populate information for the invoice pdf -->
+        <div class="pdf_container hidden_pdf" id="pdf_container" >	
 
             <div class="invoice-box">
-    
-        
     
                 <table cellpadding="0" cellspacing="0" >
                     <tr class="top">
@@ -181,7 +181,7 @@
                     </tr>
 
                     <tbody id="invoice_cell_container">
-                        <!-- Cells filled in with user input by JavaScript -->
+                        <!-- Cells filled in with user input by scriptSalesPurchases.js -->
                     </tbody>
 
                     <tr class="total">
