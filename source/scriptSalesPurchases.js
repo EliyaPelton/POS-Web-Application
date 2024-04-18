@@ -1,20 +1,62 @@
 /* ********************************** */
 /* ******* Section #1: SEARCH ******* */
 /* ********************************** */
+
 //DROPDOWN FEATURE of "search_inventory_section" section of Sale & Purchase Pages
 var coll = document.getElementsByClassName("collapsible");
-var i;
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
+    console.log(this);
     var content = this.nextElementSibling;
+    console.log(content);
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
       content.style.display = "block";
     }
   });
+}
+
+//function to search inventory items with search bar
+function searchInventory() {
+  //initially hide everything, only those that match the search input will reappear
+  for (i = 0; i < coll.length; i++) {
+    coll[i].style.display = "none";
+  }
+
+  //Declare variables
+  var input, filter, searchInventorySection, cnt;
+  input = document.getElementById("search_inventory_input");
+  filter = input.value.toUpperCase();
+  searchInventorySection = document.getElementById("search_inventory_section");
+  cnt = searchInventorySection.getElementsByClassName("content");
+
+  //Loop through all list items
+  for (i = 0; i < cnt.length; i++) {
+    cnt[i].style.display = "block";
+    var btn = cnt[i].getElementsByTagName("button");
+    for (j = 0; j < btn.length; j++) {
+      itm = btn[j];
+      if (itm.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        itm.style.display = "block";
+      } else {
+        itm.style.display ="none";
+      };
+    };
+  };
+
+  //Reset view when input is deleted
+  if (filter === "") {
+    for (i = 0; i < coll.length; i++) {
+      for (j = 0; j < cnt.length; j++) {
+        cnt[j].style.display = "none";
+      };
+      coll[i].style.display = "block";
+    };
+  };
+
 }
 
 
@@ -55,7 +97,6 @@ const itemDisplayAmount = document.getElementById("item_display_amount");
 const cartContainer = document.getElementById("cart_container");
 const cartTotalDisplay = document.getElementById("cart_total_amount");
 const itemDisplayProductName = document.getElementById("item_display_product_name");
-const btnCartConfirm = document.getElementById("btn_cart_confirm");
 
 let cartTotal = 0;
 let cartData = [];
@@ -139,7 +180,7 @@ function resetAll() {
 
 
 /* ********************************** */
-/* ******** Section #3: CART ******** */
+/* ********** GENERATE PDF ********** */
 /* ********************************** */ 
 const invoiceCellContainer = document.getElementById("invoice_cell_container");
 const invoiceTotalDisplay = document.getElementById("invoice_total_amount");
@@ -230,4 +271,3 @@ function updatePDF() {
 
 //EVENT LISTENERS
 addToCartBtn.addEventListener("click", addToCart);
-btnCartConfirm.addEventListener("click", confirm);
