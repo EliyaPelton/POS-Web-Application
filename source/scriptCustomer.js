@@ -1,5 +1,100 @@
+/* ********************************** */
+/* ***** SEARCH MATCHES DROPDOWN **** */
+/* ********************************** */
+const matchesDropdown = document.getElementById("matches_dropdown");
+const closeMatchesDropdown = document.getElementById("close_matches_dropdown");
 
-//Popup Modal
+function openMatchesFunction() {
+  console.log("open dropdown");
+  matchesDropdown.classList.remove("hidden_matches");
+}
+
+function closeMatchesFunction() {
+  console.log("close modal");
+  if (!matchesDropdown.classList.contains("hidden_matches")) {
+    matchesDropdown.classList.add("hidden_matches");
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape"
+     && !matchesDropdown.classList.contains("hidden")
+   ) {
+        closeMatchesFunction();
+    }
+});
+
+
+/* ********************************** */
+/* ********* SEARCH CUSTOMER ******** */
+/* ********************************** */
+
+//Customer Info: lastName, firstName, id, exp, dob, address, city, state, zip
+const searchCustomerInput = document.getElementById("search_customer_input");
+var filePath = 'customerData.json';
+var dataArr = {};
+var matchArr = {};
+
+//Read JSON file, store contents to dataArr
+$(function() { 
+    $.getJSON(filePath).done(function(data) {
+        dataArr = data;
+        console.log(dataArr[0].lastName);
+    }).fail(function(data) {
+        console.log('no results found');
+    });
+});
+
+//Match JSON data to search input
+$("#search_customer_input").on('input', function() { 
+  var searchName = $(this).val().toLowerCase();
+  if (searchName !== '') {
+    matchArr = dataArr.filter(function(data) {
+      //Look for the entry with a matching `lastName or firstName` value
+      concactenatedData = data.lastName + data.firstName;
+      return (concactenatedData.toLowerCase().indexOf(searchName) !== -1)}
+    );
+  } else {
+    //Don't count an empty input as a match
+    matchArr = {};
+    closeMatchesFunction();
+  }
+
+
+  //Add matches to popup dropdown//
+  //Reset dropdown
+  matchesDropdown.innerHTML = `
+  <div id="close_matches_dropdown" onclick="closeMatchesFunction()">x</div>
+  `;
+  //Check if any matches are made
+  if (Object.keys(matchArr).length !== 0) {
+    matchArr.forEach(
+      ({ lastName, firstName }) => {
+        (matchesDropdown.innerHTML += `
+        <li class="matches_dropdown_option" onclick="populateCustomer()">${lastName}, ${firstName}</li>
+        `)
+      }
+    );
+  } else {
+    matchesDropdown.innerHTML += `
+        <li class="matches_dropdown_option">No results found</li>
+        `
+  };
+  
+});
+
+
+//TODO: Write to populate screen with customer info
+function populateCustomer() {
+  console.log("code to populate customer info is coming");
+  closeMatchesFunction();
+  //insert code
+};
+
+
+/* ********************************** */
+/* *********** POPUP MODAL ********** */
+/* ********************************** */
 const modalContent = document.querySelector(".modal_content");
 const openModal = document.querySelector(".open_modal");
 var closeModal = document.getElementsByClassName("close_modal");
@@ -29,7 +124,50 @@ for (var i = 0; i < closeModal.length; i++) {
 openModal.addEventListener("click", openModalFunction);
 blurBg.addEventListener("click", closeModalFunction);
 
-//Save Data to Excel File
+
+
+/*
+
+//url: https://www.skillsugar.com/how-to-read-a-json-file-with-jquery
+ $.getJSON(filePath, function (data) {
+    $.each(data, function (key, val) {
+      //Checkpoint
+        console.log(val['country']);
+    });
+  });
+
+
+//url: https://stackoverflow.com/questions/34255181/how-to-search-in-json-file
+// Variable to hold the locations
+var dataArr = {};
+// Load the locations once, on page-load.
+$(function() { 
+    $.getJSON( "api/videoData.js").done(function(data) {
+        window.dataArr = data.pages;
+    }).fail(function(data) {
+        console.log('no results found');
+        //window.dataArr = testData; // remove this line in non-demo mode
+    });
+});
+// Respond to any input change, and show first few matches
+$("#search_customer_input").on('keypress keyup change input', function() { 
+    var arrival = $(this).val().toLowerCase();
+    $('#matches').text(!arrival.length ? '' : 
+        dataArr.filter(function(place) {
+            // look for the entry with a matching `code` value
+            return (place.title.toLowerCase().indexOf(arrival) !== -1);
+        }).map(function(place) {
+            // get titles of matches
+            return place.title;
+        }).join('\n')); // create one text with a line per matched title
+});*/
+
+
+
+/* ********************************** */
+/* ******* SAVE CUSTOMER DATA ******* */
+/* ********************************** */
+
 //Data names: fname, lname, id, exp, dob, address, city, state, zip
 function exportToExcel() {
     // Get the form data

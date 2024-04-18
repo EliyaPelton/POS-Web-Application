@@ -5,15 +5,19 @@
     --almost-white: #eee;
     --hover-gray: #ccc;
     --dark-blue: rgb(7, 2, 47);
+    --light-blue-font: #094ea7;
     --page-background: #f2f2f2;
     --icon-background: #f0f0f0;
 
     --customer-element-height: 60px;
     --popup-window-margin: 30px;
+
+    --rounding: 20px;
 }
 
 * {
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 body {
@@ -44,7 +48,6 @@ header {
     justify-content: center;
 
     color: white;
-    font-family: "Roboto", sans-serif;
     font-size: 22px;
     font-weight: bold;
 }
@@ -75,9 +78,8 @@ header {
     width: 100%;
     padding: 15px;
     border: 0;
-    border-radius: 20px;
+    border-radius: var(--rounding);
 
-    font-family: "Roboto", sans-serif;
     color: #FFFFFF;
     font-size: 14px;
     font-weight: bold;
@@ -96,8 +98,7 @@ header {
     border: 0;
     padding: 15px;
 
-    font-family: "Roboto", sans-serif;
-    color: #094ea7;
+    color: var(--light-blue-font);
     font-size: 16px;
     font-weight: bolder;
 }
@@ -111,13 +112,12 @@ header {
 
 input, select {
     border: 0;
-    border-radius: 15px;
+    border-radius: var(--rounding);
     box-sizing: border-box;
     background: white;
     width: 100%;
     padding: 15px;
 
-    font-family: "Roboto", sans-serif;
     font-size: 14px;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
  }
@@ -189,6 +189,182 @@ input, select {
 /* END HOME PAGE ---------- ---------- ---------- ---------- */
 
 
+/* CUSTOMER PAGE ---------- ---------- */
+#customer_bkg {
+    background-color: var(--page-background);
+    flex-direction: column;
+}
+
+.customer_btn_container {
+    display: flex;
+    width: auto;
+    height: 150px;
+    margin: 15px; /*center this item*/
+    padding: 15px;
+    align-items: center;
+
+    background: #ffffff;
+}
+
+.input_group {
+    height: var(--customer-element-height);
+    width: 35%;
+    margin-right: 10px;
+}
+
+#search_customer_input {
+    height: 100%;
+    width: 100%;
+ }
+
+/* SEARCH DROPDOWN */
+.hidden_matches {
+    display: none;
+}
+
+#matches_dropdown {
+    /*display: none;*/
+    background-color: white;
+    padding-left: 0px;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.matches_dropdown_option {
+    list-style-type: none;
+    color: var(--light-blue-font);
+    padding: 2px 0px 2px 7px;
+    cursor: pointer;
+}
+
+.matches_dropdown_option:hover {
+    background-color: rgb(239, 239, 239);
+}
+
+#close_matches_dropdown {
+    width: 15px;
+    text-align: center;
+    margin: 4px 9px 2px auto;
+
+    color: var(--light-blue-font);
+    font-weight: bold;
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+#close_matches_dropdown:hover {
+    color: #4185df;
+}
+/* END SEARCH DROPDOWN */
+
+ #btn_add_new_customer, #btn_add_new_customer_popup {
+    height: auto;
+    width: 200px;
+    margin: 5px;
+}
+
+#btn_add_new_customer_popup {
+    align-self: flex-end;
+}
+
+/* POPUP MODAL */
+.open_modal {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal_content {
+    position: absolute;
+    background: white;
+    width: auto;
+    height: auto;
+    left: var(--popup-window-margin);
+    right: var(--popup-window-margin);
+    top: var(--popup-window-margin);
+    bottom: var(--popup-window-margin);
+    padding: 0 2% 2% 2%;
+    border-radius: 10px;
+    z-index: 99;
+    overflow: hidden;
+}
+
+.modal_header {
+    display: flex;
+    justify-content: space-between;
+    height: 12%;
+    margin-top: 0px;
+    color: black;
+    font-size: 20px;
+    border-bottom: 2px solid var(--hover-gray);
+    overflow: hidden;
+}
+
+.modal_body {
+    height: 86%;
+    overflow: hidden;
+}
+
+#customer_popup_form {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+#popup_col_1 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-around;
+}
+
+#popup_col_2 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.customer_popup_input, option {
+    width: auto;
+    margin: 5px;
+}
+
+.hidden_modal { 
+   display: none; 
+}
+
+#close_modal_x {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+#close_modal_x:hover {
+    color: var(--hover-gray);
+}
+
+.blur_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.hidden_blur {
+    display: none;
+}
+
+/* END CUSTOMER PAGE ---------- ---------- ---------- ---------- */
+
 
 /* SALE PAGE ---------- ---------- */
  #sale_bkg {
@@ -236,7 +412,7 @@ input, select {
 .--search_element {
     margin: 5px;
     width: auto;
-    border-radius: 15px;
+    border-radius: var(--rounding);
 }
 
 .category {
@@ -337,146 +513,6 @@ th, td {
     margin-bottom: 4%;
 }
 
-/* END SALE PAGE ---------- ---------- ---------- ---------- */
-
-
-
-/* CUSTOMER PAGE ---------- ---------- */
-#customer_bkg {
-    background-color: var(--page-background);
-    flex-direction: column;
-}
-
-.customer_btn_container {
-    display: flex;
-    width: auto;
-    height: 150px;
-    margin: 15px; /*center this item*/
-    padding: 15px;
-    align-items: center;
-
-    background: #ffffff;
-}
-
-.input_group {
-    height: var(--customer-element-height);
-    width: 35%;
-    margin-right: 10px;
-}
-
-#search_customer_input {
-    height: 100%;
-    width: 100%;
- }
-
- #btn_add_new_customer, #btn_add_new_customer_popup {
-    height: auto;
-    width: 200px;
-    margin: 5px;
-}
-
-#btn_add_new_customer_popup {
-    align-self: flex-end;
-}
-
-/*Pasted Content*/
-.open_modal {
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.modal_content {
-    position: absolute;
-    background: white;
-    width: auto;
-    height: auto;
-    left: var(--popup-window-margin);
-    right: var(--popup-window-margin);
-    top: var(--popup-window-margin);
-    bottom: var(--popup-window-margin);
-    padding: 0 2% 2% 2%;
-    border-radius: 10px;
-    z-index: 99;
-    overflow: hidden;
-}
-
-.modal_header {
-    display: flex;
-    justify-content: space-between;
-    height: 12%;
-    margin-top: 0px;
-    color: black;
-    font-size: 20px;
-    border-bottom: 2px solid var(--hover-gray);
-    overflow: hidden;
-}
-
-.modal_body {
-    height: 86%;
-    overflow: hidden;
-}
-
-#customer_popup_form {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    padding: 0;
-    overflow: hidden;
-}
-
-#popup_col_1 {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    justify-content: space-around;
-}
-
-#popup_col_2 {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    justify-content: space-around;
-}
-
-.customer_popup_input, option {
-    width: auto;
-    margin: 5px;
-}
-
-.hidden_modal { 
-   display: none; 
-}
-
-#close_modal_x {
-    background: transparent;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-#close_modal_x:hover {
-    color: var(--hover-gray);
-}
-
-.blur_bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
-}
-
-.hidden_blur {
-    display: none;
-}
-
-/* END CUSTOMER PAGE ---------- ---------- ---------- ---------- */
-
 /* PDF GENERATION */
 .invoice-box {
     max-width: 800px;
@@ -576,3 +612,5 @@ th, td {
 .hidden_pdf {
     display: none;
 }
+
+/* END SALE PAGE ---------- ---------- ---------- ---------- */

@@ -6,6 +6,7 @@
     <title>Customer Page</title>
     <link type="text/css" rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -23,7 +24,12 @@
 
         <div class="customer_btn_container">
             <div class="input_group">
-                <input id="search_customer_input" type="text" placeholder="Search Customer" class="form_control"/>
+                <input id="search_customer_input" type="text" placeholder="Search Customer" class="form_control" oninput="openMatchesFunction()"/>
+                <div id="matches_container">
+                    <ul id="matches_dropdown" class="hidden_matches">
+                        <div id="close_matches_dropdown" onclick="closeMatchesFunction()">x</div>
+                    </ul>
+                </div>
                 <!--<ul class="nav nav_pills nav_stacked x42swiz" style="background-color: whitsmoke; position: absolute; top: 32px; left: 15px; width: 500px; z-index: 9999999; border: 2px solid lightgray; border-radius: 5px; height: 400px; overflow: auto; display: block;" id="searchwizResults12978">
                     <li role="presentation">
                         <a href="#" class="contactsWizardClose">
