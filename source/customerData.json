@@ -1,7 +1,8 @@
 [
     {
-    "lastName": "Washington",
-    "firstName": "George",
+    "custID": "999",
+    "fname": "George",
+    "lname": "Washington",
     "id": "Y1234",
     "exp": "01/01/1750",
     "dob": "01/01/1750",
@@ -11,8 +12,9 @@
     "zip": "95407"
     },
     {
-    "lastName": "Jefferson",
-    "firstName": "Thomas",
+    "custID": "888",
+    "fname": "Thomas",
+    "lname": "Jefferson",
     "id": "Y1234",
     "exp": "01/01/1750",
     "dob": "01/01/1750",
@@ -22,8 +24,9 @@
     "zip": "95407"
     },
     {
-    "lastName": "Adams",
-    "firstName": "John",
+    "custID": "777",
+    "fname": "John",
+    "lname": "Adams",
     "id": "Y1234",
     "exp": "01/01/1750",
     "dob": "01/01/1750",

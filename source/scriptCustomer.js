@@ -29,7 +29,7 @@ document.addEventListener("keydown", function (event) {
 /* ********* SEARCH CUSTOMER ******** */
 /* ********************************** */
 
-//Customer Info: lastName, firstName, id, exp, dob, address, city, state, zip
+//Customer Info: lname, fname, id, exp, dob, address, city, state, zip
 const searchCustomerInput = document.getElementById("search_customer_input");
 var filePath = 'customerData.json';
 var dataArr = {};
@@ -39,7 +39,6 @@ var matchArr = {};
 $(function() { 
     $.getJSON(filePath).done(function(data) {
         dataArr = data;
-        console.log(dataArr[0].lastName);
     }).fail(function(data) {
         console.log('no results found');
     });
@@ -50,28 +49,26 @@ $("#search_customer_input").on('input', function() {
   var searchName = $(this).val().toLowerCase();
   if (searchName !== '') {
     matchArr = dataArr.filter(function(data) {
-      //Look for the entry with a matching `lastName or firstName` value
-      concactenatedData = data.lastName + data.firstName;
+      //Look for the entry with a matching `lname or fname` value
+      concactenatedData = data.lname + data.fname;
       return (concactenatedData.toLowerCase().indexOf(searchName) !== -1)}
     );
   } else {
-    //Don't count an empty input as a match
-    matchArr = {};
+    matchArr = {}; //Don't count an empty input as a match
     closeMatchesFunction();
   }
 
-
   //Add matches to popup dropdown//
-  //Reset dropdown
   matchesDropdown.innerHTML = `
   <div id="close_matches_dropdown" onclick="closeMatchesFunction()">x</div>
-  `;
+  `; //Reset dropdown
+
   //Check if any matches are made
   if (Object.keys(matchArr).length !== 0) {
     matchArr.forEach(
-      ({ lastName, firstName }) => {
+      ({ lname, fname }) => {
         (matchesDropdown.innerHTML += `
-        <li class="matches_dropdown_option" onclick="populateCustomer()">${lastName}, ${firstName}</li>
+        <li class="matches_dropdown_option" onclick="populateCustomer()">${lname}, ${fname}</li>
         `)
       }
     );
@@ -82,7 +79,6 @@ $("#search_customer_input").on('input', function() {
   };
   
 });
-
 
 //TODO: Write to populate screen with customer info
 function populateCustomer() {
@@ -121,47 +117,9 @@ document.addEventListener("keydown", function (event) {
 for (var i = 0; i < closeModal.length; i++) {
   closeModal[i].addEventListener("click", closeModalFunction);
 }
+
 openModal.addEventListener("click", openModalFunction);
 blurBg.addEventListener("click", closeModalFunction);
-
-
-
-/*
-
-//url: https://www.skillsugar.com/how-to-read-a-json-file-with-jquery
- $.getJSON(filePath, function (data) {
-    $.each(data, function (key, val) {
-      //Checkpoint
-        console.log(val['country']);
-    });
-  });
-
-
-//url: https://stackoverflow.com/questions/34255181/how-to-search-in-json-file
-// Variable to hold the locations
-var dataArr = {};
-// Load the locations once, on page-load.
-$(function() { 
-    $.getJSON( "api/videoData.js").done(function(data) {
-        window.dataArr = data.pages;
-    }).fail(function(data) {
-        console.log('no results found');
-        //window.dataArr = testData; // remove this line in non-demo mode
-    });
-});
-// Respond to any input change, and show first few matches
-$("#search_customer_input").on('keypress keyup change input', function() { 
-    var arrival = $(this).val().toLowerCase();
-    $('#matches').text(!arrival.length ? '' : 
-        dataArr.filter(function(place) {
-            // look for the entry with a matching `code` value
-            return (place.title.toLowerCase().indexOf(arrival) !== -1);
-        }).map(function(place) {
-            // get titles of matches
-            return place.title;
-        }).join('\n')); // create one text with a line per matched title
-});*/
-
 
 
 /* ********************************** */
@@ -169,9 +127,56 @@ $("#search_customer_input").on('keypress keyup change input', function() {
 /* ********************************** */
 
 //Data names: fname, lname, id, exp, dob, address, city, state, zip
-function exportToExcel() {
-    // Get the form data
-    var formData = document.forms["myForm"].elements;
+import { writeFileSync } from 'fs';
+
+function exportData() {
+  var inputArr = document.getElementsByClassName("customer_popup_input");
+
+  const custInfoObj = {
+    custID: `${Date.now()}`,
+    fname: `${inputArr[0].value}`,
+    lname: `${inputArr[1].value}`,
+    id: `${inputArr[2].value}`,
+    exp: `${inputArr[3].value}`,
+    dob: `${inputArr[4].value}`,
+    address: `${inputArr[5].value}`,
+    city: `${inputArr[6].value}`,
+    state: `${inputArr[7].value}`,
+    zip: `${inputArr[8].value}`
+  };
+  console.log("custInfoObj:");
+  console.log(custInfoObj);
+
+  const jsonString = JSON.stringify(custInfoObj);
+
+  console.log(jsonString);
+
+  localStorage.setItem("data", jsonString);
+  writeFileSync("customerData.json", jsonString);
+}
+
+//temp line to be deleted. This is just for debugging so I can see the console output.
+$( "#customer_popup_form" ).on( "submit", function( event ) {event.preventDefault();} );
+
+
+
+
+/*
+function objectifyForm() {
+  //serialize data function
+  var returnArray = {};
+  for (var i = 0; i < inputCategoryArr.length; i++){
+      returnArray[inputCategoryArr[i]['name']] = inputCategoryArr[i]['value'];
+  }
+  console.log(inputCategoryArr);
+  return returnArray;
+}
+
+function exportData() {
+  console.log(inputCategoryArr);
+  objectifyForm();
+};*/
+    /*
     var csvData = [];
 
     // Get the field names
@@ -205,7 +210,7 @@ function exportToExcel() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  }*/
 
   /*
 function exportF() {

@@ -49,10 +49,10 @@
                 <button id="close_modal_x" class="close_modal">&times;</button>
             </div>
             <div class="modal_body">
-                <form id="customer_popup_form" name="myForm">
+                <form id="customer_popup_form" name="my_form" action="">
                     <div id="popup_col_1">
-                        <input name="fname" class="customer_popup_input" type="text" placeholder="Last Name">
-                        <input name="lname" class="customer_popup_input" type="text" placeholder="First Name">
+                        <input name="fname" class="customer_popup_input" type="text" placeholder="First Name">
+                        <input name="lname" class="customer_popup_input" type="text" placeholder="Last Name">
                         <input name="id" class="customer_popup_input" type="text" placeholder="ID #">
                         <input name="exp" class="customer_popup_input" type="text" placeholder="MM/DD/YYYY   (expiration)">
                         <input name="dob" class="customer_popup_input" type="text" placeholder="MM/DD/YYYY   (date of birth)">
@@ -114,8 +114,8 @@
                             <option value="WY">Wyoming</option>
                         </select>
                         <input name="zip" class="customer_popup_input" type="number" placeholder="Zip">
-                        <button id="btn_add_new_customer_popup" class="btn_generic close_modal" onclick="exportToExcel()">Submit</button>
-                        <a style="display: none" id="downloadLink"></a>
+                        <button id="btn_add_new_customer_popup" class="btn_generic close_modal" onclick="exportData()">Submit</button>
+                        <!-- <a style="display: none" id="downloadLink"></a> -->
                     </div>
                 </form>
 
