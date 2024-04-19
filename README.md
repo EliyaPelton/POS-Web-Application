@@ -6,13 +6,13 @@ Project Description: https://eepstudent.wixsite.com/eliya-pelton/point-of-sale-w
 
 Download instructions:
 
-Step #1: Download files
+1) **Step #1: Download files**
 Click "Download ZIP" on github repository. The file: "POS-Web-Application-main.zip" will appear in your downloads.
 
-Step #2: Open and extract
+2) **Step #2: Open and extract**
 Navigate to downloads and open the "POS-Web-Application-main.zip" file. Extract all files.
 
-Step #3: Run the application
+3) **Step #3: Run the application**
 Navigate to POS-Web-Application-main.zip > source > index.html
 Open "index.html" in browser to run to application. See login instructions below.
 
