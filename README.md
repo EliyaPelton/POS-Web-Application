@@ -15,7 +15,7 @@ Navigate to POS-Web-Application-main.zip > source > index.html
 Open "index.html" in browser to run to application. See login instructions below.
 
 
-#Login instructions:
+# Login instructions:
 The application will prompt for user credentials at login page. The following are valid inputs:
 
 User #1
