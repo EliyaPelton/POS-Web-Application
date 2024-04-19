@@ -25,6 +25,6 @@ function authenticate() {
 
 //Define valid users
 const validIdArr = [
-    { username: "Eliya", password: "Elephant", accountId: "Eliya Pelton"},
+    { username: "Eliya", password: "$tUd3nt", accountId: "Eliya Pelton"},
     { username: "Gregory", password: "Professor", accountId: "Gregory Baumgardner"}
 ]
