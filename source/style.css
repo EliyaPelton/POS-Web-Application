@@ -202,6 +202,7 @@ input, select {
     margin: 15px; /*center this item*/
     padding: 15px;
     align-items: center;
+    z-index: 97;
 
     background: #ffffff;
 }
@@ -222,18 +223,21 @@ input, select {
     display: none;
 }
 
+#matches_container {
+    z-index: 98;
+}
+
 #matches_dropdown {
-    /*display: none;*/
     background-color: white;
-    padding-left: 0px;
     box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding-left: 0px;
 }
 
 .matches_dropdown_option {
     list-style-type: none;
     color: var(--light-blue-font);
-    padding: 2px 0px 2px 7px;
     cursor: pointer;
+    padding: 0px 0px 3px 10px;
 }
 
 .matches_dropdown_option:hover {
@@ -243,7 +247,7 @@ input, select {
 #close_matches_dropdown {
     width: 15px;
     text-align: center;
-    margin: 4px 9px 2px auto;
+    margin: 0px 9px 2px auto;
 
     color: var(--light-blue-font);
     font-weight: bold;
@@ -332,7 +336,7 @@ input, select {
 }
 
 .hidden_modal { 
-   display: none; 
+   display: none;
 }
 
 #close_modal_x {
@@ -361,6 +365,23 @@ input, select {
 
 .hidden_blur {
     display: none;
+}
+
+/* Selected Customer Info Container */
+#selected_customer_info_container {
+    display: flex;
+    width: auto;
+    height: 200px;
+    margin: 15px; /*center this item*/
+    padding: 20px;
+    align-items: center;
+
+    background: #ffffff;
+    z-index: 1;
+}
+
+#selected_customer_table {
+    width: 100%;
 }
 
 /* END CUSTOMER PAGE ---------- ---------- ---------- ---------- */
