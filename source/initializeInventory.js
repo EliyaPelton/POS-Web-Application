@@ -21,21 +21,21 @@ const _1gsb = document.getElementById('1g_sb');
 const Obj_1ozge = {
     sku: "1oz_ge",
     desc: "1oz Gold Eagle",
-    price: 2200,
+    price: 0,
     img: "images/img_1oz_ge.jpg",
 };
 
 const Obj_1ozgml = {
   sku: "1oz_gml",
   desc: "1oz Gold Maple Leaf",
-  price: 2180,
+  price: 0,
   img: "images/img_1oz_gml.jpg",
 };
 
 const Obj_1ozgkr = {
   sku: "1oz_gkr",
   desc: "1oz Gold Krugerrand",
-  price: 2170,
+  price: 0,
   img: "images/img_1oz_gkr.jpg",
 };
 
@@ -43,21 +43,21 @@ const Obj_1ozgkr = {
 const Obj_1ozgb = {
   sku: "1oz_gb",
   desc: "1oz Gold Bar",
-  price: 2150,
+  price: 0,
   img: "images/img_1oz_gb.jpeg",
 };
 
 const Obj_1_2ozgb = {
   sku: "1/2oz_gb",
   desc: "1/2oz Gold Bar",
-  price: 1140,
+  price: 0,
   img: "images/img_1_2oz_gb.jpg",
 };
 
 const Obj_1ggb = {
   sku: "1g_gb",
   desc: "1g Gold Bar",
-  price: 70,
+  price: 0,
   img: "images/img_1g_gb.jpg",
 };
 
@@ -65,21 +65,21 @@ const Obj_1ggb = {
 const Obj_1ozse = {
   sku: "1oz_se",
   desc: "1oz Silver Eagle",
-  price: 30,
+  price: 0,
   img: "images/img_1oz_se.jpg",
 };
 
 const Obj_1ozsml = {
 sku: "1oz_sml",
 desc: "1oz Silver Maple Leaf",
-price: 28,
+price: 0,
 img: "images/img_1oz_sml.jpg",
 };
 
 const Obj_1ozskr = {
 sku: "1oz_skr",
 desc: "1oz Silver Krugerrand",
-price: 27,
+price: 0,
 img: "images/img_1oz_skr.jpg",
 };
 
@@ -87,21 +87,21 @@ img: "images/img_1oz_skr.jpg",
 const Obj_1ozsb = {
   sku: "1oz_sb",
   desc: "1oz Silver Bar",
-  price: 26,
+  price: 0,
   img: "images/img_1oz_sb.jpg",
 };
 
 const Obj_1_2ozsb = {
   sku: "1/2oz_sb",
   desc: "1/2oz Silver Bar",
-  price: 14,
+  price: 0,
   img: "images/img_1_2oz_sb.jpg",
 };
 
 const Obj_1gsb = {
   sku: "1g_sb",
   desc: "1g Silver Bar",
-  price: 2,
+  price: 0,
   img: "images/img_1g_sb.jpg",
 };
 
