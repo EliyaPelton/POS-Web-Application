@@ -1,23 +1,21 @@
 # POS-Web-Application
-Point-Of-Sale and Database Inventory Web Application
 
-Project Description: https://eepstudent.wixsite.com/eliya-pelton/point-of-sale-web-application
+**Project Description: https://eepstudent.wixsite.com/eliya-pelton/point-of-sale-web-application**
 
 
-Download instructions:
-
-1) **Step #1: Download files**
+# Download instructions:
+**Step #1: Download files**
 Click "Download ZIP" on github repository. The file: "POS-Web-Application-main.zip" will appear in your downloads.
 
-2) **Step #2: Open and extract**
+**Step #2: Open and extract**
 Navigate to downloads and open the "POS-Web-Application-main.zip" file. Extract all files.
 
-3) **Step #3: Run the application**
+**Step #3: Run the application**
 Navigate to POS-Web-Application-main.zip > source > index.html
 Open "index.html" in browser to run to application. See login instructions below.
 
 
-Login instructions:
+#Login instructions:
 The application will prompt for user credentials at login page. The following are valid inputs:
 
 User #1
