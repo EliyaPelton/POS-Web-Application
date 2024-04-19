@@ -11,17 +11,17 @@ Click "Download ZIP" on github repository. The file: "POS-Web-Application-main.z
 Navigate to downloads and open the "POS-Web-Application-main.zip" file. Extract all files.
 
 **Step #3: Run the application**<br />
-Navigate to POS-Web-Application-main.zip > source > index.html
+Navigate to POS-Web-Application-main.zip > source > index.html<br />
 Open "index.html" in browser to run to application. See login instructions below.
 
 
 # Login instructions:
 The application will prompt for user credentials at login page. The following are valid inputs:
 
-User #1
+User #1<br />
 Username: Eliya<br />
 Password: $tUd3nt
 
-User #2
+User #2<br />
 Username: Gregory<br />
 Password: Professor
