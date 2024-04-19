@@ -19,9 +19,9 @@ Open "index.html" in browser to run to application. See login instructions below
 The application will prompt for user credentials at login page. The following are valid inputs:
 
 User #1
-Username: Eliya
+Username: Eliya\n
 Password: $tUd3nt
 
 User #2
-Username: Gregory
+Username: Gregory\n
 Password: Professor
