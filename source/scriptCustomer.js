@@ -189,7 +189,14 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-
+function redirectToPurchase() {
+  const currentCustomer = JSON.parse(localStorage.getItem("selectedCustomer"));
+  if (currentCustomer.name !== "") {
+  window.location.href = "./purchase.html"
+  } else {
+    alert("Customer must be selected before entering purchase order");
+  }
+}
 
 
 
