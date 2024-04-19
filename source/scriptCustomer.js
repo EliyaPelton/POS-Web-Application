@@ -133,6 +133,7 @@ function populateCustomer(fname, lname, id, exp, dob, streetAddress, city, state
   displayDob.innerText = dob;
 
   changeSelectedCustomerLocalStorage(fullName, streetAddress, address, id, exp, dob);
+  closeMatchesFunction();
 };
 
 //Selected customer empty on page load
@@ -158,7 +159,6 @@ function changeSelectedCustomerLocalStorage(nameParam, streetAddressParam, addre
     exp: expParam,
     dob: dobParam
   };
-  console.log(storedCurrentCustomer);
   localStorage.setItem("selectedCustomer", JSON.stringify(storedCurrentCustomer));
 };
 
@@ -179,6 +179,7 @@ function closeMatchesFunction() {
   if (!matchesDropdown.classList.contains("hidden_matches")) {
     matchesDropdown.classList.add("hidden_matches");
   }
+  searchCustomerInput.value = "";
 }
 
 document.addEventListener("keydown", function (event) {
