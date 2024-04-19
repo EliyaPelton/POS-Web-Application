@@ -8,9 +8,7 @@ var coll = document.getElementsByClassName("collapsible");
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
     this.classList.toggle("active");
-    console.log(this);
     var content = this.nextElementSibling;
-    console.log(content);
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
@@ -227,8 +225,6 @@ function generatePDF()
     //Github : https://ekoopmans.github.io/html2pdf.js
 
     const invoiceIdStr = invoiceDate();
-    console.log("testing");
-    console.log(invoiceIdStr);
     var element = document.getElementById('pdf_container');
     html2pdf().set({filename: `I-${invoiceIdStr}.pdf`}).from(element).save();
 
