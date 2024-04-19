@@ -1,94 +1,4 @@
 /* ********************************** */
-/* ***** SEARCH MATCHES DROPDOWN **** */
-/* ********************************** */
-const matchesDropdown = document.getElementById("matches_dropdown");
-const closeMatchesDropdown = document.getElementById("close_matches_dropdown");
-
-function openMatchesFunction() {
-  console.log("open dropdown");
-  matchesDropdown.classList.remove("hidden_matches");
-}
-
-function closeMatchesFunction() {
-  console.log("close modal");
-  if (!matchesDropdown.classList.contains("hidden_matches")) {
-    matchesDropdown.classList.add("hidden_matches");
-  }
-}
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape"
-     && !matchesDropdown.classList.contains("hidden")
-   ) {
-        closeMatchesFunction();
-    }
-});
-
-
-/* ********************************** */
-/* ********* SEARCH CUSTOMER ******** */
-/* ********************************** */
-
-//Customer Info: lname, fname, id, exp, dob, address, city, state, zip
-const searchCustomerInput = document.getElementById("search_customer_input");
-var filePath = 'customerData.json';
-var dataArr = {};
-var matchArr = {};
-
-//Read JSON file, store contents to dataArr
-$(function() { 
-    $.getJSON(filePath).done(function(data) {
-        dataArr = data;
-    }).fail(function(data) {
-        console.log('no results found');
-    });
-});
-
-//Match JSON data to search input
-$("#search_customer_input").on('input', function() { 
-  var searchName = $(this).val().toLowerCase();
-  if (searchName !== '') {
-    matchArr = dataArr.filter(function(data) {
-      //Look for the entry with a matching `lname or fname` value
-      concactenatedData = data.lname + data.fname;
-      return (concactenatedData.toLowerCase().indexOf(searchName) !== -1)}
-    );
-  } else {
-    matchArr = {}; //Don't count an empty input as a match
-    closeMatchesFunction();
-  }
-
-  //Add matches to popup dropdown//
-  matchesDropdown.innerHTML = `
-  <div id="close_matches_dropdown" onclick="closeMatchesFunction()">x</div>
-  `; //Reset dropdown
-
-  //Check if any matches are made
-  if (Object.keys(matchArr).length !== 0) {
-    matchArr.forEach(
-      ({ lname, fname }) => {
-        (matchesDropdown.innerHTML += `
-        <li class="matches_dropdown_option" onclick="populateCustomer()">${lname}, ${fname}</li>
-        `)
-      }
-    );
-  } else {
-    matchesDropdown.innerHTML += `
-        <li class="matches_dropdown_option">No results found</li>
-        `
-  };
-  
-});
-
-//TODO: Write to populate screen with customer info
-function populateCustomer() {
-  console.log("code to populate customer info is coming");
-  closeMatchesFunction();
-  //insert code
-};
-
-
-/* ********************************** */
 /* *********** POPUP MODAL ********** */
 /* ********************************** */
 const modalContent = document.querySelector(".modal_content");
@@ -125,15 +35,19 @@ blurBg.addEventListener("click", closeModalFunction);
 /* ********************************** */
 /* ******* SAVE CUSTOMER DATA ******* */
 /* ********************************** */
-
 //Data names: fname, lname, id, exp, dob, address, city, state, zip
-import { writeFileSync } from 'fs';
+
+//Update dataArr with new localStorage data
+function updateCustomerInfoArray() {
+  for (var i = 0; i < localStorage.length; i++){
+    dataArr[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
+  }
+}
 
 function exportData() {
   var inputArr = document.getElementsByClassName("customer_popup_input");
 
-  const custInfoObj = {
-    custID: `${Date.now()}`,
+  var custInfoObj = {
     fname: `${inputArr[0].value}`,
     lname: `${inputArr[1].value}`,
     id: `${inputArr[2].value}`,
@@ -144,22 +58,155 @@ function exportData() {
     state: `${inputArr[7].value}`,
     zip: `${inputArr[8].value}`
   };
-  console.log("custInfoObj:");
-  console.log(custInfoObj);
 
-  const jsonString = JSON.stringify(custInfoObj);
+  localStorage.setItem(`${Date.now()}`, JSON.stringify(custInfoObj));
 
-  console.log(jsonString);
-
-  localStorage.setItem("data", jsonString);
-  writeFileSync("customerData.json", jsonString);
+  updateCustomerInfoArray();
 }
 
-//temp line to be deleted. This is just for debugging so I can see the console output.
-$( "#customer_popup_form" ).on( "submit", function( event ) {event.preventDefault();} );
+
+/* ********************************** */
+/* ********* SEARCH CUSTOMER ******** */
+/* ********************************** */
+//Customer Info: lname, fname, id, exp, dob, address, city, state, zip
+const searchCustomerInput = document.getElementById("search_customer_input");
+var filePath = 'customerData.json';
+var dataArr = [];
+var matchArr = {};
+
+//Read localStorage and save all objects to dataArr onload
+updateCustomerInfoArray();
+
+//Match JSON data to search input
+$("#search_customer_input").on('input', function() { 
+  var searchName = $(this).val().toLowerCase();
+  //if statement so that we don't count an empty input as a match
+  if (searchName !== '') {
+    matchArr = dataArr.filter(function(data) {
+      //Look for the entry with a matching `lname or fname` value
+      concactenatedData = String(data.lname + data.fname);
+      return (concactenatedData.toLowerCase().indexOf(searchName) !== -1)
+    });
+  } else {
+    matchArr = {};
+    closeMatchesFunction();
+  }
+
+  //Add matches to popup dropdown//
+  matchesDropdown.innerHTML = `
+  <div id="close_matches_dropdown" onclick="closeMatchesFunction()">x</div>
+  `; //Reset dropdown
+
+  //Check if any matches are made
+  if (Object.keys(matchArr).length !== 0) {
+    matchArr.forEach(
+      ({ fname, lname, id, exp, dob, address, city, state, zip }) => {
+        (matchesDropdown.innerHTML += `
+        <li value="1" class="matches_dropdown_option" onclick="populateCustomer('${fname}', '${lname}', '${id}', '${exp}', '${dob}', '${address}', '${city}', '${state}', '${zip}')">${lname}, ${fname}</li>
+        `)
+      }
+    );
+  } else {
+    matchesDropdown.innerHTML += `
+        <li class="matches_dropdown_option">No results found</li>
+        `
+  };
+  
+});
+
+//Display selected customer Info
+const displayFullName = document.getElementById("display_full_name");
+const displayAddress = document.getElementById("display_address");
+const displayId = document.getElementById("display_id");
+const displayExp = document.getElementById("display_exp");
+const displayDob = document.getElementById("display_dob");
+
+//Display selected customer
+function populateCustomer(fname, lname, id, exp, dob, streetAddress, city, state, zip) {
+  const fullName = fname + " " + lname;
+  const address = "\n" + city + ", " + state+ ", " + zip;
+
+  displayFullName.innerText = fullName;
+  displayAddress.innerText = streetAddress + address;
+  displayId.innerText = id;
+  displayExp.innerText = exp;
+  displayDob.innerText = dob;
+
+  changeSelectedCustomerLocalStorage(fullName, streetAddress, address, id, exp, dob);
+};
+
+//Selected customer empty on page load
+function clearSelectedCustomer() {
+  displayFullName.innerText = "";
+  displayAddress.innerText = "";
+  displayId.innerText = "";
+  displayExp.innerText = "";
+  displayDob.innerText = "";
+
+  changeSelectedCustomerLocalStorage("", "", "", "", "", "");
+};
+
+clearSelectedCustomer();
+
+//Save selected customer info to localStorage for use on Purchase Page
+function changeSelectedCustomerLocalStorage(nameParam, streetAddressParam, addressParam, idParam, expParam, dobParam) {
+  const storedCurrentCustomer = {
+    name: nameParam,
+    streetAddress: streetAddressParam,
+    address: addressParam,
+    id: idParam,
+    exp: expParam,
+    dob: dobParam
+  };
+  console.log(storedCurrentCustomer);
+  localStorage.setItem("selectedCustomer", JSON.stringify(storedCurrentCustomer));
+};
+
+
+/* ********************************** */
+/* ************ DROPDOWN ************ */
+/* ********************************** */
+const matchesDropdown = document.getElementById("matches_dropdown");
+const closeMatchesDropdown = document.getElementById("close_matches_dropdown");
+
+function openMatchesFunction() {
+  console.log("open dropdown");
+  matchesDropdown.classList.remove("hidden_matches");
+}
+
+function closeMatchesFunction() {
+  console.log("close modal");
+  if (!matchesDropdown.classList.contains("hidden_matches")) {
+    matchesDropdown.classList.add("hidden_matches");
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape"
+     && !matchesDropdown.classList.contains("hidden")
+   ) {
+        closeMatchesFunction();
+    }
+});
 
 
 
+
+
+
+/* ********************************** */
+/* ************* DELETE ************* */
+/* ********************************** */
+
+//Read JSON file, store contents to dataArr
+/*
+$(function() { 
+    $.getJSON(filePath).done(function(data) {
+        dataArr = data;
+    }).fail(function(data) {
+        console.log('no results found');
+    });
+});*/
 
 /*
 function objectifyForm() {

@@ -122,7 +122,6 @@ function addToCart() {
     cartData.push(itemObj);
   }
 
-  localStorage.setItem("data", JSON.stringify(cartData));
   updateCartHTML();
   updatePDF();
   currentLintItem = {}; //Only necessary when we add the "edit" feature
@@ -185,6 +184,8 @@ function resetAll() {
 const invoiceCellContainer = document.getElementById("invoice_cell_container");
 const invoiceTotalDisplay = document.getElementById("invoice_total_amount");
 const invoiceHeader = document.getElementById("invoice_header");
+const invoiceCustomerInfo = document.getElementById("invoice_customer_info");
+
 
 function confirm() {
   printPDF();
@@ -192,6 +193,7 @@ function confirm() {
 }
 
 function printPDF() {
+  addCustomerInfoToPDF();
   showPDF();
   generatePDF();
   myTimeout = setTimeout(hidePDF, 1);
@@ -266,8 +268,23 @@ function updatePDF() {
   invoiceTotalDisplay.innerHTML = `Total: $${cartTotal}`;
 };
 
-
-
+const currentCustomer = JSON.parse(localStorage.getItem("selectedCustomer"));
+function addCustomerInfoToPDF() {
+  if (currentCustomer.name !== "") {
+    invoiceCustomerInfo.innerHTML += `
+    <td>
+      <strong>Customer Name:</strong><br />
+      ${currentCustomer.name}<br />
+    </td>
+    <td>
+      <strong>Customer Info:</strong><br />
+      ${currentCustomer.streetAddress}<br />
+      ${currentCustomer.address}
+    </td>
+        `;
+  };
+  
+}
 
 //EVENT LISTENERS
 addToCartBtn.addEventListener("click", addToCart);

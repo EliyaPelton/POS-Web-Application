@@ -30,14 +30,7 @@
                         <div id="close_matches_dropdown" onclick="closeMatchesFunction()">x</div>
                     </ul>
                 </div>
-                <!--<ul class="nav nav_pills nav_stacked x42swiz" style="background-color: whitsmoke; position: absolute; top: 32px; left: 15px; width: 500px; z-index: 9999999; border: 2px solid lightgray; border-radius: 5px; height: 400px; overflow: auto; display: block;" id="searchwizResults12978">
-                    <li role="presentation">
-                        <a href="#" class="contactsWizardClose">
-                            <span style="margin-left:95%"></span>
-                            <i class="fa fa-close"></i>
-                        </a>
-                    </li>
-                </ul>-->
+                <!-- Content populated by customerScript.js -->
             </div>
             <button id="btn_add_new_customer" class="btn_generic open_modal" type="button"><i class="fa fa-user-plus" style="font-size: 20px;"></i> Add New Customer</button>
         </div>
@@ -115,11 +108,36 @@
                         </select>
                         <input name="zip" class="customer_popup_input" type="number" placeholder="Zip">
                         <button id="btn_add_new_customer_popup" class="btn_generic close_modal" onclick="exportData()">Submit</button>
-                        <!-- <a style="display: none" id="downloadLink"></a> -->
                     </div>
                 </form>
+            </div> 
+        </div>
 
-            </div>
+        <div id="selected_customer_info_container" class="hidden_customer">
+            <table id="selected_customer_table">
+                    <thead>
+                        <tr>
+                            <th class="selected_customer_cell">Name</th>
+                            <th class="selected_customer_cell">Address</th>
+                            <th class="selected_customer_cell">Lisence ID</th>
+                            <th class="selected_customer_cell">Lisence Expiration</th>
+                            <th class="selected_customer_cell">Date of Birth</th>
+                            <th class="selected_customer_cell"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="display_full_name" class="selected_customer_cell">Elephant</td>
+                            <td id="display_address" class="selected_customer_cell">1000 Regent University Rd, CA 95047</td>
+                            <td id="display_id" class="selected_customer_cell">Y287709485876234</td>
+                            <td id="display_exp" class="selected_customer_cell">01/01/2100</td>
+                            <td id="display_dob" class="selected_customer_cell">01/01/1000</td>
+                            <td class="selected_customer_cell">
+                                <button id="btn_enter_order" class="btn_generic" type="button" onclick='window.location.href = "./purchase.html"'>Enter Order</button>
+                            </td>
+                        </tr>
+                    </tbody>
+            </table>
         </div>
     </div>
     
