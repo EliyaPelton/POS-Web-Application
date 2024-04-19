@@ -1,0 +1,663 @@
+/* TABLE OF CONTENTS
+1) GLOBAL STYLING
+    :root
+    *
+    body
+    .bkg
+2) REUSEABLE COMPONENTS
+    .btn_generic, .collabsible_btn
+    .nav_button
+    input, select
+3) HEADER
+4) LOGIN PAGE
+5) HOME PAGE
+6) CUSTOMER PAGE
+    Search Dropdown
+    Popup Modal
+    Selected Customer Info
+7) SALES & PURCAHSES PAGES
+    All sections on Sale Page
+    Section 1: Search Inventory
+    Section 2: Item Display
+    Section 3: Cart
+    Confirm Cart
+    PDF Generation
+    RTL
+*/
+
+
+ /* GLOBAL STYLING ---------- ---------- */
+:root {
+    --saleOrPurchase_item_margin: 3%;
+    --image_path: ;
+
+    --almost-white: #eee;
+    --hover-gray: #ccc;
+    --dark-blue: rgb(7, 2, 47);
+    --light-blue-font: #094ea7;
+    --page-background: #f2f2f2;
+    --icon-background: #f0f0f0;
+
+    --customer-element-height: 60px;
+    --popup-window-margin: 30px;
+
+    --rounding: 20px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+.bkg {
+    background-color: var(--page-background);
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+/* REUSEABLE COMPONENTS */
+.btn_generic, .collabsible_btn{
+    background: #050b45;
+    width: 100%;
+    padding: 15px;
+    border: 0;
+    border-radius: var(--rounding);
+
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn_generic:hover, .btn_generic:active, .btn_generic:focus {
+    background: #626DCF;
+}
+
+.nav_button {
+    background: #FFFFFF;
+    height: 70px;
+    width: 250px;
+    border: 0;
+    padding: 15px;
+
+    color: var(--light-blue-font);
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.nav_button:hover, .nav_button:active, .nav_button:focus {
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+input, select {
+    border: 0;
+    border-radius: var(--rounding);
+    box-sizing: border-box;
+    background: white;
+    width: 100%;
+    padding: 15px;
+
+    font-size: 14px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+ }
+
+ select {
+   color: #6e6e6e;
+ }
+/* END REUSEABLE COMPONENTS ---------- ---------- */
+
+
+/* HEADER */
+header {
+    height: 80px;
+    width: 100%;
+}
+
+#header_bkg {
+    background-color: var(--dark-blue);
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#header_logo {
+    position: absolute;
+    left: var(--saleOrPurchase_item_margin);
+    background-image: url('images/img_logo.png');
+    height: 60px;
+    width: 120px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;;
+    cursor: pointer;
+}
+
+#header_icon {
+    position: absolute;
+    right: var(--saleOrPurchase_item_margin);
+    cursor: pointer;
+}
+ /* END HEADER ---------- ---------- */
+
+
+ /* LOGIN PAGE ---------- ---------- */
+ #login_bkg {
+    background-image: url('images/img_login_bkgd4.webp');
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+ .login_container {
+    max-width: 500px;
+    padding: 45px;
+    padding-top: 30px;
+    background: rgba(0, 0, 0, 0.792);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login_element {
+    margin: 5px;
+}
+
+#login_logo {
+    background-image: url('images/img_logo.png');
+    height: 60px;
+    width: 120px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    margin: auto;
+    margin-bottom: 10px;
+}
+/* END LOGIN ---------- ---------- ---------- ---------- */
+
+
+
+/* HOME PAGE ---------- ---------- */
+ #home_bkg {
+    flex-direction: column;
+}
+
+.nav_btn_container {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    width: auto;
+    height: auto;
+    margin: 15px; /*center this item*/
+    padding: 15px;
+
+    border: 0;
+    background: #ffffff;
+    text-align: center;
+}
+/* END HOME PAGE ---------- ---------- ---------- ---------- */
+
+
+/* CUSTOMER PAGE ---------- ---------- */
+#customer_bkg {
+    background-color: var(--page-background);
+    flex-direction: column;
+}
+
+.customer_btn_container {
+    display: flex;
+    width: auto;
+    height: 150px;
+    margin: 15px; /*center this item*/
+    padding: 15px;
+    align-items: center;
+    z-index: 96;
+
+    background: #ffffff;
+}
+
+.input_group {
+    height: var(--customer-element-height);
+    width: 35%;
+    margin-right: 10px;
+}
+
+#search_customer_input {
+    height: 100%;
+    width: 100%;
+ }
+
+/* SEARCH DROPDOWN */
+.hidden_matches {
+    display: none;
+}
+
+#matches_container {
+    z-index: 97;
+}
+
+#matches_dropdown {
+    background-color: white;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding-left: 0px;
+}
+
+.matches_dropdown_option {
+    list-style-type: none;
+    color: var(--light-blue-font);
+    cursor: pointer;
+    padding: 0px 0px 3px 10px;
+}
+
+.matches_dropdown_option:hover {
+    background-color: rgb(239, 239, 239);
+}
+
+#close_matches_dropdown {
+    width: 15px;
+    text-align: center;
+    margin: 0px 9px 2px auto;
+
+    color: var(--light-blue-font);
+    font-weight: bold;
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+#close_matches_dropdown:hover {
+    color: #4185df;
+}
+/* END SEARCH DROPDOWN */
+
+ #btn_add_new_customer, #btn_add_new_customer_popup {
+    height: auto;
+    width: 200px;
+    margin: 5px;
+}
+
+#btn_add_new_customer_popup {
+    align-self: flex-end;
+}
+
+/* POPUP MODAL */
+.open_modal {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.modal_content {
+    position: absolute;
+    background: white;
+    width: auto;
+    height: auto;
+    left: var(--popup-window-margin);
+    right: var(--popup-window-margin);
+    top: var(--popup-window-margin);
+    bottom: var(--popup-window-margin);
+    padding: 0 2% 2% 2%;
+    border-radius: 10px;
+    z-index: 99;
+    overflow: hidden;
+}
+
+.modal_header {
+    display: flex;
+    justify-content: space-between;
+    height: 12%;
+    margin-top: 0px;
+    color: black;
+    font-size: 20px;
+    border-bottom: 2px solid var(--hover-gray);
+    overflow: hidden;
+}
+
+.modal_body {
+    height: 86%;
+    overflow: hidden;
+}
+
+#customer_popup_form {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+#popup_col_1 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-around;
+}
+
+#popup_col_2 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: space-around;
+}
+
+.customer_popup_input, option {
+    width: auto;
+    margin: 5px;
+}
+
+.hidden_modal { 
+   display: none;
+}
+
+#close_modal_x {
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+#close_modal_x:hover {
+    color: var(--hover-gray);
+}
+
+.blur_bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    z-index: 98;
+}
+
+.hidden_blur {
+    display: none;
+}
+
+/* Selected Customer Info Container */
+#selected_customer_info_container {
+    display: flex;
+    width: auto;
+    height: 200px;
+    margin: 15px; /*center this item*/
+    padding: 20px;
+    align-items: center;
+
+    background: #ffffff;
+    z-index: 1;
+}
+
+#selected_customer_table {
+    width: 100%;
+}
+
+/* END CUSTOMER PAGE ---------- ---------- ---------- ---------- */
+
+
+/* SALES AND PURCHASES PAGES ---------- ---------- */
+ #sale_bkg {
+    /*background-color: #f2f2f2;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+#sale_main_container {
+    height: 100%;
+    margin: 2% var(--saleOrPurchase_item_margin) 10% var(--saleOrPurchase_item_margin);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+/* Three Sections */
+.sale_section {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    height: auto;
+    margin: 0px;
+}
+
+#search_inventory_section {
+    width: 30%;
+    overflow-y: scroll;
+}
+
+#item_display_section {
+    width: 35%;
+    margin: 0 10px;
+}
+
+#cart_section {
+    width: 35%;
+    overflow-y: scroll;
+}
+
+/* Section #1: SEARCH INVENTORY */
+.--search_element {
+    margin: 5px;
+    width: auto;
+    border-radius: var(--rounding);
+}
+
+.category {
+    background-color: var(--almost-white);
+}
+
+.collapsible {
+    width: auto;
+    padding: 18px;
+    border: none;
+    outline: none;
+    
+    text-align: left;
+    font-size: 14px;
+    color: #444;
+
+    cursor: pointer;
+}
+
+.collapsible:active, .collapsible:hover, .item_btn:hover, .item_btn:active  {
+    background-color: var(--hover-gray);
+}
+
+.item_btn {
+    background-color: var(--page-background);
+    color: var(--dark-blue);
+    border-radius: 0px;
+    padding: 5px;
+}
+
+.content {
+    background-color: #f1f1f1;
+    padding: 0 18px;
+    display: none;
+}
+
+/* Section #2: ITEM DISPLAY */
+.item_display_cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+#item_display_image_container {
+    height: 100%;
+    width: auto;
+    margin: 10px;
+    background-image: var(--image_path);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Section #3: CART */
+#table_caption {
+    border-top: 2px solid lightgray;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 4px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border-top: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
+    text-align: center;
+}
+
+th, td {
+    text-align: center;
+    padding: 5px;
+}
+
+#cart_total_amount {
+    font-weight: bold;
+}
+
+.delete_btn {
+    border: none;
+    background-color: transparent;
+}
+
+.delete_btn:hover {
+    border: none;
+    background-color: transparent;
+    color: var(--hover-gray);
+}
+
+/* CONFIRM Cart Button */
+#rep {
+    width: 200px;
+    position: fixed;
+    align-self: flex-end;
+    margin-right: var(--saleOrPurchase_item_margin);
+    margin-bottom: 4%;
+}
+
+/* PDF GENERATION */
+.invoice-box {
+    max-width: 800px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    color: #555;
+}
+
+.invoice-box table {
+    width: 100%;
+    line-height: inherit;
+    text-align: left;
+}
+
+.invoice-box table td {
+    padding: 5px;
+    vertical-align: top;
+}
+
+.invoice-box table tr td:nth-child(4) {
+    text-align: right;
+}
+
+.invoice-box table tr.top table td {
+    padding-bottom: 20px;
+}
+
+.invoice-box table tr.top table td.title {
+    font-size: 45px;
+    line-height: 45px;
+    color: #333;
+}
+
+.invoice-box table tr.information table td {
+    padding-bottom: 40px;
+}
+
+.invoice-box table tr.heading td {
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.invoice-box table tr.details td {
+    padding-bottom: 20px;
+}
+
+.invoice-box table tr.item td {
+    border-bottom: 1px solid #eee;
+}
+
+.invoice-box table tr.item.last td {
+    border-bottom: none;
+}
+
+.invoice-box table tr.total td:nth-child(5) {
+    border-top: 2px solid #eee;
+}
+
+.invoice-box table tr.total td:nth-child(4) {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+    .invoice-box table tr.top table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .invoice-box table tr.information table td {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+
+/** RTL **/
+.invoice-box.rtl {
+    direction: rtl;
+    font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+}
+
+.invoice-box.rtl table {
+    text-align: right;
+}
+
+.invoice-box.rtl table tr td:nth-child(4) {
+    text-align: left;
+}
+
+.hidden_pdf {
+    display: none;
+}
+
+/* END SALES AND PURCHASES PAGES ---------- ---------- ---------- ---------- */
