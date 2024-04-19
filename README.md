@@ -1,6 +1,7 @@
 # POS-Web-Application
 
-**Project Description: https://eepstudent.wixsite.com/eliya-pelton/point-of-sale-web-application**
+**Project Description: https://eepstudent.wixsite.com/eliya-pelton/point-of-sale-web-application**<br />
+**Application Link: https://eliyapelton.github.io/POS-Web-Application/**
 
 
 # Download instructions:
