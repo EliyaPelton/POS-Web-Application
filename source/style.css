@@ -202,7 +202,7 @@ input, select {
     margin: 15px; /*center this item*/
     padding: 15px;
     align-items: center;
-    z-index: 97;
+    z-index: 96;
 
     background: #ffffff;
 }
@@ -224,7 +224,7 @@ input, select {
 }
 
 #matches_container {
-    z-index: 98;
+    z-index: 97;
 }
 
 #matches_dropdown {
@@ -361,6 +361,7 @@ input, select {
     width: 100%;
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
+    z-index: 98;
 }
 
 .hidden_blur {
