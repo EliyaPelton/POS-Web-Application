@@ -28,7 +28,7 @@ Password: Professor
 
 # Important Note:
 You will need to add some customer data before you can test the full functionality of the "Cusotmer Page" and the "Purchase Page"<br />
-The "Customer Page" will save new customer data to the local Storage. This is also where the search function will search for existing customers. The purchase page will not allow you to complete a purchase unless you select a customer first. Of course, you will only be able to select a customer through the search feature and you can only search for customer once they exist. You will need to add some test customer data by choosing "Add new customer" on the Customer page.<br />
+The "Customer Page" will save new customer data to the local Storage. This is also where the search function will search for existing customers. The purchase page will not allow you to complete a purchase unless you select a customer first. Of course, you will only be able to select a customer through the search feature and you can only search for customers once they exist. You will need to add some test customer data by choosing "Add new customer" on the Customer page.<br />
 
 Example Test data:
 
