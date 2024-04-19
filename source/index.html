@@ -9,19 +9,23 @@
 
 <body>
     <div id="login_bkg" class="bkg">
-        <form action="./home.html">
+        <form name="login_authentication" action="./home.html">
 
             <div class="login_container">
                 <div id="login_logo"></div>
-                <input class="login_element" type="text" placeholder="Username" id="username" name="username" required pattern="[a-zA-Z0-9]+">
+                <input id="username" class="login_element" type="text" name="username" placeholder="Username" required pattern="[a-zA-Z0-9]+">
 
-                <input class="login_element" type="password" placeholder="Password" id="password" name="password" required pattern="[a-zA-Z0-9]+">
+                <input id="password" class="login_element" type="password" name="password" placeholder="Password" required pattern="[a-zA-Z0-9]+">
 
-                <button class="login_element btn_generic" type="submit">Login</button>
+                <button class="login_element btn_generic" type="button" onclick="authenticate()">Login</button>
             </div>
 
         </form>
     </div>
+
+    <!-- SCRIPTS -->
+    <script src="./scriptLogin.js"></script>
+
 </body>
 
 </html>
