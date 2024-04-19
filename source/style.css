@@ -1,3 +1,32 @@
+/* TABLE OF CONTENTS
+1) GLOBAL STYLING
+    :root
+    *
+    body
+    .bkg
+2) REUSEABLE COMPONENTS
+    .btn_generic, .collabsible_btn
+    .nav_button
+    input, select
+3) HEADER
+4) LOGIN PAGE
+5) HOME PAGE
+6) CUSTOMER PAGE
+    Search Dropdown
+    Popup Modal
+    Selected Customer Info
+7) SALES & PURCAHSES PAGES
+    All sections on Sale Page
+    Section 1: Search Inventory
+    Section 2: Item Display
+    Section 3: Cart
+    Confirm Cart
+    PDF Generation
+    RTL
+*/
+
+
+ /* GLOBAL STYLING ---------- ---------- */
 :root {
     --saleOrPurchase_item_margin: 3%;
     --image_path: ;
@@ -31,6 +60,59 @@ body {
     height: 100%;
     display: flex;
 }
+
+/* REUSEABLE COMPONENTS */
+.btn_generic, .collabsible_btn{
+    background: #050b45;
+    width: 100%;
+    padding: 15px;
+    border: 0;
+    border-radius: var(--rounding);
+
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn_generic:hover, .btn_generic:active, .btn_generic:focus {
+    background: #626DCF;
+}
+
+.nav_button {
+    background: #FFFFFF;
+    height: 70px;
+    width: 250px;
+    border: 0;
+    padding: 15px;
+
+    color: var(--light-blue-font);
+    font-size: 16px;
+    font-weight: bolder;
+}
+
+.nav_button:hover, .nav_button:active, .nav_button:focus {
+    background: #FFFFFF;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+input, select {
+    border: 0;
+    border-radius: var(--rounding);
+    box-sizing: border-box;
+    background: white;
+    width: 100%;
+    padding: 15px;
+
+    font-size: 14px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+ }
+
+ select {
+   color: #6e6e6e;
+ }
+/* END REUSEABLE COMPONENTS ---------- ---------- */
 
 
 /* HEADER */
@@ -69,64 +151,7 @@ header {
     right: var(--saleOrPurchase_item_margin);
     cursor: pointer;
 }
-
-
-
-/* REUSEABLE COMPONENTS */
-.btn_generic, .collabsible_btn{
-    background: #050b45;
-    width: 100%;
-    padding: 15px;
-    border: 0;
-    border-radius: var(--rounding);
-
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn_generic:hover, .btn_generic:active, .btn_generic:focus {
-    background: #626DCF;
-}
-
-.nav_button {
-    background: #FFFFFF;
-    /*width: relative;*/
-    height: 70px;
-    width: 250px;
-    border: 0;
-    padding: 15px;
-
-    color: var(--light-blue-font);
-    font-size: 16px;
-    font-weight: bolder;
-}
-
-.nav_button:hover, .nav_button:active, .nav_button:focus {
-    background: #FFFFFF;
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-    /*box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);*/
-}
-
-
-input, select {
-    border: 0;
-    border-radius: var(--rounding);
-    box-sizing: border-box;
-    background: white;
-    width: 100%;
-    padding: 15px;
-
-    font-size: 14px;
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
- }
-
- select {
-   color: #6e6e6e;
- }
-
-
+ /* END HEADER ---------- ---------- */
 
 
  /* LOGIN PAGE ---------- ---------- */
@@ -388,7 +413,7 @@ input, select {
 /* END CUSTOMER PAGE ---------- ---------- ---------- ---------- */
 
 
-/* SALE PAGE ---------- ---------- */
+/* SALES AND PURCHASES PAGES ---------- ---------- */
  #sale_bkg {
     /*background-color: #f2f2f2;*/
     display: flex;
@@ -635,4 +660,4 @@ th, td {
     display: none;
 }
 
-/* END SALE PAGE ---------- ---------- ---------- ---------- */
+/* END SALES AND PURCHASES PAGES ---------- ---------- ---------- ---------- */

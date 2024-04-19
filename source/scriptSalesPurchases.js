@@ -7,7 +7,7 @@ var coll = document.getElementsByClassName("collapsible");
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
+    this.classList.toggle("active");  //EVENT LISTENER
     var content = this.nextElementSibling;
     if (content.style.display === "block") {
       content.style.display = "none";
@@ -17,9 +17,9 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-//function to search inventory items with search bar
+//Function to search inventory items with search bar
 function searchInventory() {
-  //initially hide everything, only those that match the search input will reappear
+  //Initially hide everything, only those that match the search input will reappear
   for (i = 0; i < coll.length; i++) {
     coll[i].style.display = "none";
   }
@@ -61,12 +61,8 @@ function searchInventory() {
 /* ********************************** */
 /* ******* Section #2: DISPLAY ****** */
 /* ********************************** */
-//function to display a picture of the inventory item
+//Function to display a picture of the inventory item
 var itemBtn = document.getElementsByClassName("item_btn");
-
-for (var i = 0; i < itemBtn.length; i++) {
-  itemBtn[i].addEventListener("click", displayItem);
-}
 
 function displayItem() {
   const itemArrIndex = inventoryData.findIndex((item) => item.sku === this.id);
@@ -80,6 +76,11 @@ function displayItem() {
 
   r = document.querySelector(':root');
   r.style.setProperty('--image_path', `url("${inventoryData[itemArrIndex].img}")`);
+}
+
+//EVENT LISTENERS
+for (var i = 0; i < itemBtn.length; i++) {
+  itemBtn[i].addEventListener("click", displayItem);
 }
 
 
@@ -174,6 +175,8 @@ function resetAll() {
   calculateTotal();
 };
 
+//EVENT LISTENERS
+addToCartBtn.addEventListener("click", addToCart);
 
 
 /* ********************************** */
@@ -281,6 +284,3 @@ function addCustomerInfoToPDF() {
   };
   
 }
-
-//EVENT LISTENERS
-addToCartBtn.addEventListener("click", addToCart);
