@@ -21,27 +21,31 @@ The "Customer Page" will save new customer data to the local Storage. This is al
 Example Test data:
 
 <table>
-  <tr>
-    <th>First Name</th>
-    <td>George</td>
-    <td>Thomas</td>
-  </tr>
-  <tr>
-    <th>Last Name</th>
-    <td>Washington</td>
-    <td>Jefferson</td>
-  </tr>
-  <tr>
-    <th>License ID#</th>
-    <td>A7878935</td>
-    <td>B8143520</td>
-  </tr>
-  <tr>
-    <th>Expiration Date</th>
-    <td>01/01/2750</td>
-    <td>02/02/2787</td>
-  </tr>
-</table>
+  <thead>
+    <tr>
+      <td></td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>License ID#</td>
+      <td>Expiration Date</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>George</td>
+      <td>Washington</td>
+      <td>A7878935</td>
+      <td>01/01/2750</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Thomase</td>
+      <td>Jefferson</td>
+      <td>B8143520</td>
+      <td>02/02/2787</td>
+    </tr>
+  </tbody>
 
 First Name: George<br />
 Last Name: Washington<br />
