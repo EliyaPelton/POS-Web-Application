@@ -24,15 +24,15 @@ Example Test data:
   <thead>
     <tr>
       <td></td>
-      <td>First Name</td>
-      <td>Last Name</td>
-      <td>License ID#</td>
-      <td>Expiration Date</td>
-      <td>Date Of Birth</td>
-      <td>Address</td>
-      <td>City</td>
-      <td>State</td>
-      <td>Zip</td>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>License ID#</th>
+      <th>Expiration Date</th>
+      <th>Date Of Birth</th>
+      <th>Address</th>
+      <th>City</tH>
+      <th>State</th>
+      <th>Zip</th>
     </tr>
   </thead>
   <tbody>
