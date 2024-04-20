@@ -28,6 +28,11 @@ Example Test data:
       <td>Last Name</td>
       <td>License ID#</td>
       <td>Expiration Date</td>
+      <td>Date Of Birth</td>
+      <td>Address</td>
+      <td>City</td>
+      <td>State</td>
+      <td>Zip</td>
     </tr>
   </thead>
   <tbody>
@@ -37,42 +42,34 @@ Example Test data:
       <td>Washington</td>
       <td>A7878935</td>
       <td>01/01/2750</td>
+      <td>01/01/1750</td>
+      <td>100 Cherry Tree Blvd</td>
+      <td>Providence</td>
+      <td>Rhode Island</td>
+      <td>12345</td>
     </tr>
     <tr>
       <td>2</td>
-      <td>Thomase</td>
+      <td>Thomas</td>
       <td>Jefferson</td>
       <td>B8143520</td>
       <td>02/02/2787</td>
+      <td>02/02/1787</td>
+      <td>101 Constitution Rd</td>
+      <td>Philadelphia</td>
+      <td>Pennsylvania</td>
+      <td>67890</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Patrick</td>
+      <td>Henry</td>
+      <td>C3870231</td>
+      <td>07/04/2776</td>
+      <td>07/04/1776</td>
+      <td>102 Independence Ln</td>
+      <td>Boston</td>
+      <td>Massachussetts</td>
+      <td>98765</td>
     </tr>
   </tbody>
-
-First Name: George<br />
-Last Name: Washington<br />
-ID #: A7878935<br />
-Exp: 01/01/2750<br />
-Dob: 01/01/1750<br />
-Address: 888 Cherry Tree Blvd<br />
-City: Providence<br />
-State: Rhode Island<br />
-Zip: 88888<br /><br />
-
-First Name: Thomas<br />
-Last Name: Jefferson<br />
-ID #: B8143520<br />
-Exp: 02/02/2787<br />
-Dob: 02/02/1787<br />
-Address: 777 Constitution Rd<br />
-City: Philadelphia<br />
-State: Pennsylvania<br />
-Zip: 77777<br /><br />
-
-First Name: Patrick<br />
-Last Name: Henry<br />
-ID #: C3870231<br />
-Exp: 07/04/2776<br />
-Dob: 07/04/1776<br />
-Address: 123 Independence Ln<br />
-City: Victory<br />
-State: Delaware<br />
-Zip: 12345
